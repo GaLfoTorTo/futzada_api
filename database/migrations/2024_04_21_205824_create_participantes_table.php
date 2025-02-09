@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('arbitro')->default(false);
             $table->boolean('organizador')->default(false);
             $table->boolean('colaborador')->default(false);
-            $table->text('permissoes')->default(json_encode(['Adicionar','Editar','Remover']));
+            $table->text('permissoes')->nullable();
             $table->enum('status', ['Disponível','Duvida','Machucado','Fora'])->default('Disponível');
             $table->timestamps();
             $table->softDeletes();

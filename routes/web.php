@@ -28,7 +28,5 @@ use App\Models\Usuario;
 */
 
 Route::get('/', function () {
-    $class_atuacao = new Atuacao;
-    dd($class_atuacao);
-    return view('welcome');
+    return view('landing');
 });

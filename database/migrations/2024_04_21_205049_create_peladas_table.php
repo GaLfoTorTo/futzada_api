@@ -13,21 +13,19 @@ return new class extends Migration
     {
         Schema::create('peladas', function (Blueprint $table) {
             $table->id();
-            $table->enum('tipo',['Completa','Rapida'])->default('Completa');
+            $table->uuid('uuid')->unique();
             $table->string('nome');
             $table->text('bio')->nullable();
-            $table->enum('visibilidade',['Publica','Privada'])->default('Publica');
             $table->text('foto')->nullable();
             $table->boolean('local_fixo')->default(false);
             $table->string('endereco')->nullable();
             $table->boolean('dia_hora_fixo')->default(false);
             $table->string('dia_semana')->nullable();
             $table->date('data')->nullable();
-            $table->string('hora')->nullable();
-            $table->enum('tipo_campo',['Gramado','Society','Quadra'])->default('Quadra');
+            $table->string('horario')->nullable();
+            $table->enum('categoria',['Gramado','Society','Quadra'])->default('Quadra');
             $table->integer('qtd_jogadores')->nullable();
-            $table->boolean('levar_bola')->default(false);
-            $table->boolean('arbitro')->default(false);
+            $table->enum('visibilidade',['Publica','Privada'])->default('Publica');
             $table->boolean('status_colaboradores')->default(false);
             $table->timestamps();
             $table->softDeletes();
