@@ -224,6 +224,10 @@ html, body {
     min-height: 400px;
 }
 
+.section_1_title {
+    font-size: 3.5rem;
+}
+
 .section_1_article_img {
     height: 120vh;
     max-height: 610px;
@@ -422,4 +426,40 @@ html, body {
     100%{
         transform: translateY(-100%);
     }
+}
+
+/* Features */
+
+#features {
+    height: 110vh;
+    background-image: url('/img/feature_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.feature_celular{
+    height: 85vh;
+    width: 100%;
+    object-fit: contain;
+}
+.card_feature{
+    height: calc(110vh / 3);
+}
+
+.btn_feature {
+    width: 50px!important;
+    height: 50px!important;
+    background-color: var(--blue_500);
+    border: none;
+    border-radius: 50%;
+    box-shadow: color-mix(in srgb, var(--blue_500) 50%, transparent) 0px 0px 1px 5px;
+}
+
+.btn_feature:hover{
+    box-shadow: color-mix(in srgb, var(--blue_500) 50%, transparent) 0px 0px 1px 8px;
+}
+
+.card_feature_text{
+    display: none;
 }
