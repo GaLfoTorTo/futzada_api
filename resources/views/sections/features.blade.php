@@ -1,12 +1,12 @@
 <section id="features">
    <div class="container">
-      <div class="row text-center py-5">
-         <h2><b>Funcionalidades</b></h2>
+      <div class="row justify-content-center text-center py-5">
+         <h2 class="w-75"><b>Tudo que você precisa em um só lugar! Impulsione sua pelada para um novo patamar.</b></h2>
       </div>
       <div class="row" id="collapseGroup">
          <article class="col-4 col-sm-4 col-md-4 col-lg-4">
             <div class="row">
-               <div class="col-12 card_feature">
+               <div class="col-12 card_feature" data-aos="fade-right" data-aos-delay="50">
                   <div class="row justify-content-center">
                      <div class="col-2">
                         <button class="btn_feature" data-bs-toggle="collapse" data-bs-target="#text_explore" aria-controls="text_explore" aria-expanded="false" id="btn_explore">
@@ -21,7 +21,7 @@
                      </div>
                   </div>
                </div>
-               <div class="col-12 card_feature">
+               <div class="col-12 card_feature" data-aos="fade-right" data-aos-delay="100">
                   <div class="row justify-content-center">
                      <div class="col-2">
                         <button class="btn_feature" data-bs-toggle="collapse" data-bs-target="#text_escalation" aria-controls="text_escalation" aria-expanded="false" id="btn_escalation">
@@ -36,7 +36,7 @@
                      </div>
                   </div>
                </div>
-               <div class="col-12 card_feature">
+               <div class="col-12 card_feature" data-aos="fade-right" data-aos-delay="150">
                   <div class="row justify-content-center">
                      <div class="col-2">
                         <button class="btn_feature" data-bs-toggle="collapse" data-bs-target="#text_manage" aria-controls="text_manage" aria-expanded="false" id="btn_manage">
@@ -53,12 +53,12 @@
                </div>
             </div>
          </article>
-         <article class="col-4 col-sm-4 col-md-4 col-lg-4">
+         <article class="col-4 col-sm-4 col-md-4 col-lg-4" data-aos="zoom-in">
             <img src="/img/splash.png" class="feature_celular" alt="">
          </article>
          <article class="col-4 col-sm-4 col-md-4 col-lg-4">
             <div class="row">
-               <div class="col-12 card_feature">
+               <div class="col-12 card_feature" data-aos="fade-left" data-aos-delay="50">
                   <div class="row justify-content-center">
                      <div class="col-10 collapse collapse-horizontal" id="text_pelada" data-bs-parent="#collapseGroup">
                         <div class="text-end" style="width: 300px;">
@@ -73,7 +73,7 @@
                      </div>
                   </div>
                </div>
-               <div class="col-12 card_feature">
+               <div class="col-12 card_feature" data-aos="fade-left" data-aos-delay="100">
                   <div class="row justify-content-center">
                      <div class="col-10 collapse collapse-horizontal" id="text_play" data-bs-parent="#collapseGroup">
                         <div class="text-end" style="width: 300px;">
@@ -89,7 +89,7 @@
                   </div>
                </div>
                <div class="col-12 card_feature">
-                  <div class="row justify-content-center">
+                  <div class="row justify-content-center" data-aos="fade-left" data-aos-delay="150">
                      <div class="col-10 collapse collapse-horizontal" id="text_rank" data-bs-parent="#collapseGroup">
                         <div class="text-end" style="width: 300px;">
                            <b class="feature_title fs-4 ml-3">Ranks</b>

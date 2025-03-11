@@ -8,7 +8,9 @@
    {{-- Bootstrap --}}
    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
    {{-- Font Awesome --}}
-<link rel="stylesheet" href="/plugins/fontawesome/css/all.min.css">
+   <link rel="stylesheet" href="/plugins/fontawesome/css/all.min.css">
+   {{-- AOS --}}
+   <link rel="stylesheet" href="/plugins/aos/css/aos.min.css">
    {{-- Custom Styles --}}
 <link rel="stylesheet" href="/css/styles.css">
 </head>

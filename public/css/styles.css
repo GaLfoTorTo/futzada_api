@@ -428,7 +428,17 @@ html, body {
     }
 }
 
-/* Features */
+/* SECTION 1 #HOME FIM*/
+
+/* SECTION USABILITY */
+
+#usability{
+    height: 80vh;
+}
+
+/* SECTION USABILITY FIM*/
+
+/* SECTION FEATURE */
 
 #features {
     height: 110vh;
@@ -436,6 +446,7 @@ html, body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    padding: 100px;
 }
 
 .feature_celular{
@@ -463,3 +474,5 @@ html, body {
 .card_feature_text{
     display: none;
 }
+
+/* SECTION FEATURE FIM */

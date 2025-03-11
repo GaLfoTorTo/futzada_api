@@ -1,6 +1,12 @@
 <footer>
+    {{-- Jquery --}}
     <script src="plugins/jquery/jquery.min.js"></script>
+    {{-- Bootstrap --}}
     <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    {{-- AOS --}}
+    <script src="plugins/aos/js/aos.min.js"></script>
+    {{-- Animations Js --}}
+    <script src="/js/animation.js"></script>
     <script>
         //ALTERAR IMAGEM OU VIDEO DO WIDGET DE CELULAR
         $(document).on('click','.btn_feature', function(){

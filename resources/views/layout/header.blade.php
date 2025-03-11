@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg nav_bar_custom bg-green-300">
+<nav id="navbar" class="navbar navbar-expand-lg nav_bar_custom bg-green-300">
    <div class="container">
       <a class="navbar-brand d-flex align-items-center justify-content-between" href="#">
          <img src="img/logo.png" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
@@ -10,16 +10,19 @@
                <a class="nav-link active" href="#">Home</a>
             </li>
             <li class="nav-item">
-               <a class="nav-link" href="#">Features</a>
+               <a class="nav-link" href="#usability">Usability</a>
             </li>
             <li class="nav-item">
-               <a class="nav-link" href="#">About us</a>
+               <a class="nav-link" href="#features">Features</a>
             </li>
             <li class="nav-item">
-               <a class="nav-link" href="#">Reports</a>
+               <a class="nav-link" href="#about_us">About Us</a>
             </li>
             <li class="nav-item">
-               <a class="nav-link" href="#">Contact us</a>
+               <a class="nav-link" href="#reports">Reports</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="#contact">Contact</a>
             </li>
          </ul>
       </div>
