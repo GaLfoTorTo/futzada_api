@@ -3,4 +3,6 @@
    @include('sections.home')
    @include('sections.usability')
    @include('sections.features')
+   @include('sections.network')
+   @include('sections.modality')
 @endsection

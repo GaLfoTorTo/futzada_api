@@ -16,6 +16,9 @@
                <a class="nav-link" href="#features">Features</a>
             </li>
             <li class="nav-item">
+               <a class="nav-link" href="#network">Network</a>
+            </li>
+            <li class="nav-item">
                <a class="nav-link" href="#about_us">About Us</a>
             </li>
             <li class="nav-item">

@@ -1,7 +1,7 @@
 <section id="features">
    <div class="container">
-      <div class="row justify-content-center text-center py-5">
-         <h2 class="w-75"><b>Tudo que você precisa em um só lugar! Impulsione sua pelada para um novo patamar.</b></h2>
+      <div class="row justify-content-center text-center py-5" data-aos="zoom-in">
+         <h2 class="w-75"><b>Tudo que seu futebol precisa em um só lugar! Impulsione sua pelada para um novo patamar.</b></h2>
       </div>
       <div class="row" id="collapseGroup">
          <article class="col-4 col-sm-4 col-md-4 col-lg-4">

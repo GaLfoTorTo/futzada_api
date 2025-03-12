@@ -205,30 +205,30 @@ html, body {
     max-width: 100%;
 }
 
-.section_1_background {
+.home_background {
     position: absolute;
     left: 0;
     width: 100%;
 }
 
-.section_1_background_img {
+.home_background_img {
     object-fit: cover;
     width: 100%;
     max-width: 100%;
 }
 
-.section_1_article_title {
+.home_article_title {
     position: relative;
     height: 50vh;
     max-height: 600px;
     min-height: 400px;
 }
 
-.section_1_title {
+.home_title {
     font-size: 3.5rem;
 }
 
-.section_1_article_img {
+.home_article_img {
     height: 120vh;
     max-height: 610px;
     display: flex;
@@ -283,10 +283,10 @@ html, body {
 
 /* Media Queries para responsividade */
 @media (max-width: 1024px) {
-    .section_1_article_title{
+    .home_article_title{
         height: 50vh;
     }
-    .section_1_article_img {
+    .home_article_img {
         height: 40vh;
     }
     .phone {
@@ -295,10 +295,10 @@ html, body {
 }
 
 @media (max-width: 768px) {
-    .section_1_article_title{
+    .home_article_title{
         height: 40vh;
     }
-    .section_1_article_img {
+    .home_article_img {
         height: 30vh;
     }
     .phone {
@@ -307,10 +307,10 @@ html, body {
 }
 
 @media (max-width: 480px) {
-    .section_1_article_title{
+    .home_article_title{
         height: 30vh;
     }
-    .section_1_article_img {
+    .home_article_img {
         height: 20vh;
     }
     .phone {
@@ -442,11 +442,11 @@ html, body {
 
 #features {
     height: 110vh;
+    max-height: 110vh;
     background-image: url('/img/feature_background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding: 100px;
 }
 
 .feature_celular{
@@ -476,3 +476,49 @@ html, body {
 }
 
 /* SECTION FEATURE FIM */
+
+/* SECTION NETWORK */
+#network {
+    height: 89vh;
+    margin-top: 100px;
+}
+
+.network_article_img{
+    width: 100%;
+    height: auto;
+    position: relative;
+    right: 80px;
+}
+
+.network_users{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.network_user{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: relative;
+    z-index: 0;
+    margin-left: -10px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.network_divider{
+    height: 5px;
+    background-color: var(--green_300);
+}
+
+/* SESCTION NETWORK FIM */
+
+/* SECTION MODALITY */
+
+#modality{
+    height: 80vh;
+    background-image: url('/img/modality_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
