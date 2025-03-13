@@ -1,7 +1,4 @@
 <section id="home" class="container-fluid">
-   <div class="home_background">
-      <img src="/img/home_background.png" class="home_background_img">
-   </div>
    <div class="container">
       <div class="row">
          <article class="col-6 col-sm-12 col-md-6 col-lg-6" data-aos="fade-right">

@@ -1,9 +1,9 @@
-<nav id="navbar" class="navbar navbar-expand-lg nav_bar_custom bg-green-300">
+<nav id="navbar" class="navbar navbar-expand-lg nav_bar_custom bg-futebol">
    <div class="container">
       <a class="navbar-brand d-flex align-items-center justify-content-between" href="#">
-         <img src="img/logo.png" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
-         <h3 class="fw-bold text-blue-500">Futzada</h3>
+         <img src="img/icone.png" alt="Logo" width="50" height="50" class="d-inline-block align-text-top mr-2">
       </a>
+      <h3 class="fw-bold text-blue-500">Futzada</h3>
       <div class="collapse navbar-collapse justify-content-end">
          <ul class="navbar-nav">
             <li class="nav-item">

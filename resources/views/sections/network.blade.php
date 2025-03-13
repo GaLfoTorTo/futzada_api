@@ -12,22 +12,22 @@
             </div>
             <div class="network_users mt-5 w-50">
                <div class="d-flex justify-content-center align-items-center" data-aos="fade-down" data-aos-delay="100">
-                  <img class="network_user" src="/img/user_1.jpg">
+                  <img class="network_user" src="/img/users/user_1.jpg">
                </div>
                <div class="network_user d-flex justify-content-center align-items-center text-white bg-danger" data-aos="fade-down" data-aos-delay="150">
                   <b>A</b>
                </div>
                <div class="d-flex justify-content-center align-items-center" data-aos="fade-down" data-aos-delay="200">
-                  <img class="network_user" src="/img/avatar.png">
+                  <img class="network_user" src="/img/users/avatar.png">
                </div>
                <div class="d-flex justify-content-center align-items-center" data-aos="fade-down" data-aos-delay="250">
-                  <img class="network_user" src="/img/user_2.jpg">
+                  <img class="network_user" src="/img/users/user_2.jpg">
                </div>
                <div class="network_user d-flex justify-content-center align-items-center text-white bg-primary" data-aos="fade-down" data-aos-delay="300">
                   <b>S</b>
                </div>
                <div class="d-flex justify-content-center align-items-center" data-aos="fade-down" data-aos-delay="350">
-                  <img class="network_user" src="/img/user_3.jpg">
+                  <img class="network_user" src="/img/users/user_3.jpg">
                </div>
                <div class="network_user d-flex justify-content-center align-items-center text-white bg-success" data-aos="fade-down" data-aos-delay="300">
                   <b>L</b>

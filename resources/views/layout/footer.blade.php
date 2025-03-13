@@ -8,6 +8,7 @@
     {{-- Animations Js --}}
     <script src="/js/animation.js"></script>
     <script>
+        /* FEATURES */
         //ALTERAR IMAGEM OU VIDEO DO WIDGET DE CELULAR
         $(document).on('click','.btn_feature', function(){
             //RESGATAR ID DO COLLAPSE
@@ -29,6 +30,21 @@
                     });
                 }
             }, 500);
+        });
+        /* MODALITY */
+        //TOOGLE ACTIVE
+        $(document).on('click','.modality_item', function(){
+            //RESGATAR MODALIDADE
+            let modality = $(this).data('modality');
+            //REMOVER CLASSE ACTIVE DE TODOS OS ITENS
+            $('.modality_item').removeClass('active');
+            //ADICIONAR NO ITEM CLICADO
+            $(this).addClass('active');
+            //ALTERAR TEMA DA PAGINA PARA MODALIDADE ESCOLHIDA
+            $('#navbar').removeClass('bg-futebol bg-basketball bg-volleyball').addClass(`bg-${modality}`);
+            $('#home').css({'background-image':`url('/img/${modality}/home_background_${modality}.png')`});
+            $('#features').css({'background-image':`url('/img/${modality}/feature_background_${modality}.png')`});
+            $('#modality').css({'background-image':`url('/img/${modality}/modality_background_${modality}.png')`});
         });
     </script>
 </footer>

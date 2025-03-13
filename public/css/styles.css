@@ -85,11 +85,13 @@ html, body {
 .bg-green-500 { background-color: var(--green_500) !important; }
 .bg-green-300 { background-color: var(--green_300) !important; }
 .bg-green-100 { background-color: var(--green_100) !important; }
+.bg-futebol { background-color: var(--green_300) !important; }
 
 .bg-bege-700 { background-color: var(--bege_700) !important; }
 .bg-bege-500 { background-color: var(--bege_500) !important; }
 .bg-bege-300 { background-color: var(--bege_300) !important; }
 .bg-bege-100 { background-color: var(--bege_100) !important; }
+.bg-volleyball { background-color: var(--bege_300) !important; }
 
 .bg-orange-700 { background-color: var(--orange_700) !important; }
 .bg-orange-500 { background-color: var(--orange_500) !important; }
@@ -100,6 +102,7 @@ html, body {
 .bg-red-500 { background-color: var(--red_500) !important; }
 .bg-red-300 { background-color: var(--red_300) !important; }
 .bg-red-100 { background-color: var(--red_100) !important; }
+.bg-basketball { background-color: var(--red_500) !important; }
 
 .bg-yellow-700 { background-color: var(--yellow_700) !important; }
 .bg-yellow-500 { background-color: var(--yellow_500) !important; }
@@ -201,8 +204,12 @@ html, body {
 
 /* TEXTO DE APRESENTAÇÃO */
 #home {
-    width: 100vw;
-    max-width: 100%;
+    height: 110vh;
+    max-height: 110vh;
+    background-image: url('/img/futebol/home_background_futebol.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .home_background {
@@ -443,7 +450,7 @@ html, body {
 #features {
     height: 110vh;
     max-height: 110vh;
-    background-image: url('/img/feature_background.png');
+    background-image: url('/img/futebol/feature_background_futebol.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -517,8 +524,48 @@ html, body {
 
 #modality{
     height: 80vh;
-    background-image: url('/img/modality_background.png');
+    background-image: url('/img/futebol/modality_background_futebol.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    transition: background-image 0.3s ease; 
+}
+
+.modality_item{
+    border-radius: 50%;
+    padding: 30px;
+    cursor: pointer;
+}
+
+#modality_futebol{
+    background-color: var(--green_300);
+    color: var(--blue_500);
+    font-size: 50px;
+}
+#modality_futebol.active{
+    box-shadow: color-mix(in srgb, var(--green_500) 50%, transparent) 0px 0px 1px 15px;
+    font-size: 60px;
+    transition: font-size 0.3s ease;
+}
+
+#modality_basketball{
+    background-color: var(--orange_500);
+    color: var(--blue_500);
+    font-size: 50px;
+}
+#modality_basketball.active{
+    box-shadow: color-mix(in srgb, var(--orange_500) 50%, transparent) 0px 0px 1px 15px;
+    font-size: 60px;
+    transition: font-size 0.3s ease;
+}
+
+#modality_volleyball{
+    background-color: var(--bege_300);
+    color: var(--blue_500);
+    font-size: 50px;
+}
+#modality_volleyball.active{
+    box-shadow: color-mix(in srgb, var(--bege_500) 50%, transparent) 0px 0px 1px 15px;
+    font-size: 60px;
+    transition: font-size 0.3s ease;
 }
