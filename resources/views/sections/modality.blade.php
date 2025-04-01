@@ -1,4 +1,4 @@
-<section id="modality" class="container-fluid d-flex align-items-center my-5">
+<section id="modality" class="container-fluid d-flex align-items-center">
    <article class="container">
       <div class="row">
          <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center" data-aos="zoom-in">

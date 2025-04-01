@@ -7,6 +7,10 @@
                <h1 class="fw-bold home_title">Para o próximo nível</h1>
                <p>Encontre partidas, organize jogos, marque pontos e aproveite uma experiência inovadora com o Futzada!</p>
             </div>
+            <div class="row justify-content-evenly">
+               <button class="btn btn-blue-500 text-white rounded-pill w-25 p-3">Começar</button>
+               <button class="btn btn-outline-white rounded-pill w-25 p-3">Download</button>
+            </div>
          </article>
          <article class="col-6 col-sm-12 col-md-6 col-lg-6">
             <div class="home_article_img px-5">

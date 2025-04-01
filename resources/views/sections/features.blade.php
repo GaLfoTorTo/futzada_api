@@ -1,9 +1,9 @@
 <section id="features">
    <div class="container">
-      <div class="row justify-content-center text-center py-5" data-aos="zoom-in">
+      <div id="feature_title" class="row justify-content-center text-center" data-aos="zoom-in">
          <h2 class="w-75"><b>Tudo que seu futebol precisa em um só lugar! Impulsione sua pelada para um novo patamar.</b></h2>
       </div>
-      <div class="row" id="collapseGroup">
+      <div id="collapseGroup" class="row">
          <article class="col-4 col-sm-4 col-md-4 col-lg-4">
             <div class="row">
                <div class="col-12 card_feature" data-aos="fade-right" data-aos-delay="50">

@@ -22,6 +22,13 @@ html, body {
     color: var(--blue_500);
 }
 
+body {
+    background-image: url('/img/background.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: white;
+}
+
 /* COLORS */
 :root{
     /* GREEN */
@@ -138,6 +145,177 @@ html, body {
 .bg-light { background-color: var(--light) !important; }
 .bg-white { background-color: var(--white) !important; }
 
+/* BTN COLORS */
+.btn-green-700 { background-color: var(--green_700) !important; color: var(--blue_500) }
+.btn-green-500 { background-color: var(--green_500) !important; color: var(--blue_500) }
+.btn-green-300 { background-color: var(--green_300) !important; color: var(--blue_500) }
+.btn-green-100 { background-color: var(--green_100) !important; color: var(--blue_500) }
+
+.btn-bege-700 { background-color: var(--bege_700) !important; color: var(--blue_500) }
+.btn-bege-500 { background-color: var(--bege_500) !important; color: var(--blue_500) }
+.btn-bege-300 { background-color: var(--bege_300) !important; color: var(--blue_500) }
+.btn-bege-100 { background-color: var(--bege_100) !important; color: var(--blue_500) }
+
+.btn-orange-700 { background-color: var(--orange_700) !important; color: var(--blue_500) }
+.btn-orange-500 { background-color: var(--orange_500) !important; color: var(--blue_500) }
+.btn-orange-300 { background-color: var(--orange_300) !important; color: var(--blue_500) }
+.btn-orange-100 { background-color: var(--orange_100) !important; color: var(--blue_500) }
+
+.btn-red-700 { background-color: var(--red_700) !important; color: var(--white) }
+.btn-red-500 { background-color: var(--red_500) !important; color: var(--white) }
+.btn-red-300 { background-color: var(--red_300) !important; color: var(--white) }
+.btn-red-100 { background-color: var(--red_100) !important; color: var(--white) }
+
+.btn-yellow-700 { background-color: var(--yellow_700) !important; color: var(--dark_700) }
+.btn-yellow-500 { background-color: var(--yellow_500) !important; color: var(--dark_700) }
+.btn-yellow-300 { background-color: var(--yellow_300) !important; color: var(--dark_700) }
+.btn-yellow-100 { background-color: var(--yellow_100) !important; color: var(--dark_700) }
+
+.btn-blue-700 { background-color: var(--blue_700) !important; color: var(--white) }
+.btn-blue-500 { background-color: var(--blue_500) !important; color: var(--white) }
+.btn-blue-300 { background-color: var(--blue_300) !important; color: var(--white) }
+.btn-blue-100 { background-color: var(--blue_100) !important; color: var(--white) }
+
+.btn-purple-700 { background-color: var(--purple_700) !important; color: var(--white) }
+.btn-purple-500 { background-color: var(--purple_500) !important; color: var(--white) }
+.btn-purple-300 { background-color: var(--purple_300) !important; color: var(--white) }
+.btn-purple-100 { background-color: var(--purple_100) !important; color: var(--white) }
+
+.btn-cyan-700 { background-color: var(--cyan_700) !important; color: var(--white) }
+.btn-cyan-500 { background-color: var(--cyan_500) !important; color: var(--white) }
+.btn-cyan-300 { background-color: var(--cyan_300) !important; color: var(--white) }
+.btn-cyan-100 { background-color: var(--cyan_100) !important; color: var(--white) }
+
+.btn-brown-700 { background-color: var(--brown_700) !important; color: var(--white) }
+.btn-brown-500 { background-color: var(--brown_500) !important; color: var(--white) }
+.btn-brown-300 { background-color: var(--brown_300) !important; color: var(--white) }
+.btn-brown-100 { background-color: var(--brown_100) !important; color: var(--white) }
+
+.btn-dark-700 { background-color: var(--dark_700) !important; color: var(--white) }
+.btn-dark-500 { background-color: var(--dark_500) !important; color: var(--white) }
+.btn-dark-300 { background-color: var(--dark_300) !important; color: var(--white) }
+
+.btn-gray-700 { background-color: var(--gray_700) !important; color: var(--white) }
+.btn-gray-500 { background-color: var(--gray_500) !important; color: var(--white) }
+.btn-gray-300 { background-color: var(--gray_300) !important; color: var(--white) }
+
+.btn-light { background-color: var(--dark_300) !important; color: var(--dark_700) }
+.btn-white { background-color: var(--blue_500) !important; color: var(--blue_500) }
+
+/* BTN OUTLINE COLORS */
+.btn-outline-green-700 { border: 2px solid  var(--green_700) !important; color: var(--blue_500) }
+.btn-outline-green-500 { border: 2px solid  var(--green_500) !important; color: var(--blue_500) }
+.btn-outline-green-300 { border: 2px solid  var(--green_300) !important; color: var(--blue_500) }
+.btn-outline-green-100 { border: 2px solid  var(--green_100) !important; color: var(--blue_500) }
+
+.btn-outline-bege-700 { border: 2px solid  var(--bege_700) !important; color: var(--blue_500) }
+.btn-outline-bege-500 { border: 2px solid  var(--bege_500) !important; color: var(--blue_500) }
+.btn-outline-bege-300 { border: 2px solid  var(--bege_300) !important; color: var(--blue_500) }
+.btn-outline-bege-100 { border: 2px solid  var(--bege_100) !important; color: var(--blue_500) }
+
+.btn-outline-orange-700 { border: 2px solid  var(--orange_700) !important; color: var(--blue_500) }
+.btn-outline-orange-500 { border: 2px solid  var(--orange_500) !important; color: var(--blue_500) }
+.btn-outline-orange-300 { border: 2px solid  var(--orange_300) !important; color: var(--blue_500) }
+.btn-outline-orange-100 { border: 2px solid  var(--orange_100) !important; color: var(--blue_500) }
+
+.btn-outline-red-700 { border: 2px solid  var(--red_700) !important; color: var(--white) }
+.btn-outline-red-500 { border: 2px solid  var(--red_500) !important; color: var(--white) }
+.btn-outline-red-300 { border: 2px solid  var(--red_300) !important; color: var(--white) }
+.btn-outline-red-100 { border: 2px solid  var(--red_100) !important; color: var(--white) }
+
+.btn-outline-yellow-700 { border: 2px solid  var(--yellow_700) !important; color: var(--dark_700) }
+.btn-outline-yellow-500 { border: 2px solid  var(--yellow_500) !important; color: var(--dark_700) }
+.btn-outline-yellow-300 { border: 2px solid  var(--yellow_300) !important; color: var(--dark_700) }
+.btn-outline-yellow-100 { border: 2px solid  var(--yellow_100) !important; color: var(--dark_700) }
+
+.btn-outline-blue-700 { border: 2px solid  var(--blue_700) !important; color: var(--white) }
+.btn-outline-blue-500 { border: 2px solid  var(--blue_500) !important; color: var(--white) }
+.btn-outline-blue-300 { border: 2px solid  var(--blue_300) !important; color: var(--white) }
+.btn-outline-blue-100 { border: 2px solid  var(--blue_100) !important; color: var(--white) }
+
+.btn-outline-purple-700 { border: 2px solid  var(--purple_700) !important; color: var(--white) }
+.btn-outline-purple-500 { border: 2px solid  var(--purple_500) !important; color: var(--white) }
+.btn-outline-purple-300 { border: 2px solid  var(--purple_300) !important; color: var(--white) }
+.btn-outline-purple-100 { border: 2px solid  var(--purple_100) !important; color: var(--white) }
+
+.btn-outline-cyan-700 { border: 2px solid  var(--cyan_700) !important; color: var(--white) }
+.btn-outline-cyan-500 { border: 2px solid  var(--cyan_500) !important; color: var(--white) }
+.btn-outline-cyan-300 { border: 2px solid  var(--cyan_300) !important; color: var(--white) }
+.btn-outline-cyan-100 { border: 2px solid  var(--cyan_100) !important; color: var(--white) }
+
+.btn-outline-brown-700 { border: 2px solid  var(--brown_700) !important; color: var(--white) }
+.btn-outline-brown-500 { border: 2px solid  var(--brown_500) !important; color: var(--white) }
+.btn-outline-brown-300 { border: 2px solid  var(--brown_300) !important; color: var(--white) }
+.btn-outline-brown-100 { border: 2px solid  var(--brown_100) !important; color: var(--white) }
+
+.btn-outline-dark-700 { border: 2px solid  var(--dark_700) !important; color: var(--white) }
+.btn-outline-dark-500 { border: 2px solid  var(--dark_500) !important; color: var(--white) }
+.btn-outline-dark-300 { border: 2px solid  var(--dark_300) !important; color: var(--white) }
+
+.btn-outline-gray-700 { border: 2px solid  var(--gray_700) !important; color: var(--white) }
+.btn-outline-gray-500 { border: 2px solid  var(--gray_500) !important; color: var(--white) }
+.btn-outline-gray-300 { border: 2px solid  var(--gray_300) !important; color: var(--white) }
+
+.btn-outline-light { border: 2px solid var(--dark_300) !important; color: var(--dark_700) }
+.btn-outline-white { border: 2px solid var(--blue_500) !important; color: var(--blue_500) }
+
+/* BTN HOUVERED  */
+.btn-green-700:hover, .btn-outline-green-700:hover { box-shadow: color-mix(in srgb, var(--green_700) 50%, transparent) 0px 0px 1px 8px;}
+.btn-green-500:hover, .btn-outline-green-500:hover { box-shadow: color-mix(in srgb, var(--green_500) 50%, transparent) 0px 0px 1px 8px;}
+.btn-green-300:hover, .btn-outline-green-300:hover { box-shadow: color-mix(in srgb, var(--green_300) 50%, transparent) 0px 0px 1px 8px;}
+.btn-green-100:hover, .btn-outline-green-100:hover { box-shadow: color-mix(in srgb, var(--green_100) 50%, transparent) 0px 0px 1px 8px;}
+
+.btn-bege-700:hover, .btn-outline-bege-700:hover { box-shadow: color-mix(in srgb, var(--bege_700) 50%, transparent) 0px 0px 1px 8px;}
+.btn-bege-500:hover, .btn-outline-bege-500:hover { box-shadow: color-mix(in srgb, var(--bege_500) 50%, transparent) 0px 0px 1px 8px;}
+.btn-bege-300:hover, .btn-outline-bege-300:hover { box-shadow: color-mix(in srgb, var(--bege_300) 50%, transparent) 0px 0px 1px 8px;}
+.btn-bege-100:hover, .btn-outline-bege-100:hover { box-shadow: color-mix(in srgb, var(--bege_100) 50%, transparent) 0px 0px 1px 8px;}
+
+.btn-orange-700:hover, .btn-outline-orange-700:hover { box-shadow: color-mix(in srgb, var(--orange_700) 50%, transparent) 0px 0px 1px 8px;}
+.btn-orange-500:hover, .btn-outline-orange-500:hover { box-shadow: color-mix(in srgb, var(--orange_500) 50%, transparent) 0px 0px 1px 8px;}
+.btn-orange-300:hover, .btn-outline-orange-300:hover { box-shadow: color-mix(in srgb, var(--orange_300) 50%, transparent) 0px 0px 1px 8px;}
+.btn-orange-100:hover, .btn-outline-orange-100:hover { box-shadow: color-mix(in srgb, var(--orange_100) 50%, transparent) 0px 0px 1px 8px;}
+
+.btn-red-700:hover, .btn-outline-red-700:hover { box-shadow: color-mix(in srgb, var(--red_700) 50%, transparent) 0px 0px 1px 8px;}
+.btn-red-500:hover, .btn-outline-red-500:hover { box-shadow: color-mix(in srgb, var(--red_500) 50%, transparent) 0px 0px 1px 8px;}
+.btn-red-300:hover, .btn-outline-red-300:hover { box-shadow: color-mix(in srgb, var(--red_300) 50%, transparent) 0px 0px 1px 8px;}
+.btn-red-100:hover, .btn-outline-red-100:hover { box-shadow: color-mix(in srgb, var(--red_100) 50%, transparent) 0px 0px 1px 8px;}
+
+.btn-yellow-700:hover, .btn-outline-yellow-700:hover { box-shadow: color-mix(in srgb, var(--yellow_700) 50%, transparent) 0px 0px 1px 8px;}
+.btn-yellow-500:hover, .btn-outline-yellow-500:hover { box-shadow: color-mix(in srgb, var(--yellow_500) 50%, transparent) 0px 0px 1px 8px;}
+.btn-yellow-300:hover, .btn-outline-yellow-300:hover { box-shadow: color-mix(in srgb, var(--yellow_300) 50%, transparent) 0px 0px 1px 8px;}
+.btn-yellow-100:hover, .btn-outline-yellow-100:hover { box-shadow: color-mix(in srgb, var(--yellow_100) 50%, transparent) 0px 0px 1px 8px;}
+
+.btn-blue-700:hover, .btn-outline-blue-700:hover { box-shadow: color-mix(in srgb, var(--blue_700) 50%, transparent) 0px 0px 1px 8px;}
+.btn-blue-500:hover, .btn-outline-blue-500:hover { box-shadow: color-mix(in srgb, var(--blue_500) 50%, transparent) 0px 0px 1px 8px;}
+.btn-blue-300:hover, .btn-outline-blue-300:hover { box-shadow: color-mix(in srgb, var(--blue_300) 50%, transparent) 0px 0px 1px 8px;}
+.btn-blue-100:hover, .btn-outline-blue-100:hover { box-shadow: color-mix(in srgb, var(--blue_100) 50%, transparent) 0px 0px 1px 8px;}
+
+.btn-purple-700:hover, .btn-outline-purple-700:hover { box-shadow: color-mix(in srgb, var(--purple_700) 50%, transparent) 0px 0px 1px 8px;}
+.btn-purple-500:hover, .btn-outline-purple-500:hover { box-shadow: color-mix(in srgb, var(--purple_500) 50%, transparent) 0px 0px 1px 8px;}
+.btn-purple-300:hover, .btn-outline-purple-300:hover { box-shadow: color-mix(in srgb, var(--purple_300) 50%, transparent) 0px 0px 1px 8px;}
+.btn-purple-100:hover, .btn-outline-purple-100:hover { box-shadow: color-mix(in srgb, var(--purple_100) 50%, transparent) 0px 0px 1px 8px;}
+
+.btn-cyan-700:hover, .btn-outline-cyan-700:hover { box-shadow: color-mix(in srgb, var(--cyan_700) 50%, transparent) 0px 0px 1px 8px;}
+.btn-cyan-500:hover, .btn-outline-cyan-500:hover { box-shadow: color-mix(in srgb, var(--cyan_500) 50%, transparent) 0px 0px 1px 8px;}
+.btn-cyan-300:hover, .btn-outline-cyan-300:hover { box-shadow: color-mix(in srgb, var(--cyan_300) 50%, transparent) 0px 0px 1px 8px;}
+.btn-cyan-100:hover, .btn-outline-cyan-100:hover { box-shadow: color-mix(in srgb, var(--cyan_100) 50%, transparent) 0px 0px 1px 8px;}
+
+.btn-brown-700:hover, .btn-outline-brown-700:hover { box-shadow: color-mix(in srgb, var(--brown_700) 50%, transparent) 0px 0px 1px 8px;}
+.btn-brown-500:hover, .btn-outline-brown-500:hover { box-shadow: color-mix(in srgb, var(--brown_500) 50%, transparent) 0px 0px 1px 8px;}
+.btn-brown-300:hover, .btn-outline-brown-300:hover { box-shadow: color-mix(in srgb, var(--brown_300) 50%, transparent) 0px 0px 1px 8px;}
+.btn-brown-100:hover, .btn-outline-brown-100:hover { box-shadow: color-mix(in srgb, var(--brown_100) 50%, transparent) 0px 0px 1px 8px;}
+
+.btn-dark-700:hover, .btn-outline-dark-700:hover { box-shadow: color-mix(in srgb, var(--dark_700) 50%, transparent) 0px 0px 1px 8px;}
+.btn-dark-500:hover, .btn-outline-dark-500:hover { box-shadow: color-mix(in srgb, var(--dark_500) 50%, transparent) 0px 0px 1px 8px;}
+.btn-dark-300:hover, .btn-outline-dark-300:hover { box-shadow: color-mix(in srgb, var(--dark_300) 50%, transparent) 0px 0px 1px 8px;}
+
+.btn-gray-700:hover, .btn-outline-gray-700:hover { box-shadow: color-mix(in srgb, var(--gray_700) 50%, transparent) 0px 0px 1px 8px;}
+.btn-gray-500:hover, .btn-outline-gray-500:hover { box-shadow: color-mix(in srgb, var(--gray_500) 50%, transparent) 0px 0px 1px 8px;}
+.btn-gray-300:hover, .btn-outline-gray-300:hover { box-shadow: color-mix(in srgb, var(--gray_300) 50%, transparent) 0px 0px 1px 8px;}
+
+.btn-light:hover, .btn-outline-light:hover { box-shadow: color-mix(in srgb, var(--dark_300) 50%, transparent) 0px 0px 1px 8px;}
+.btn-white:hover, .btn-outline-white:hover { box-shadow: color-mix(in srgb, var(--blue_500) 50%, transparent) 0px 0px 1px 8px;}
+
 /* TEXT COLORS */
 .text-green-700 { color: var(--green_700) !important; }
 .text-green-500 { color: var(--green_500) !important; }
@@ -196,37 +374,31 @@ html, body {
 /* NAV BAR */
 
 .nav_bar_custom {
-    position: relative; /* Certifique-se de que o nav tenha um contexto de empilhamento */
+    position: fixed;
+    width: 100%;
     z-index: 1000;
     box-shadow: 0 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.nav-link.active, .nav-link:hover{
+    color: var(--blue_500)!important;
+    font-weight: bold!important;
+}
+
+.nav-link{
+    color: var(--blue_500);
 }
 /* SECTION 1 #HOME */
 
 /* TEXTO DE APRESENTAÇÃO */
+
 #home {
-    height: 110vh;
-    max-height: 110vh;
-    background-image: url('/img/futebol/home_background_futebol.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.home_background {
-    position: absolute;
-    left: 0;
-    width: 100%;
-}
-
-.home_background_img {
-    object-fit: cover;
-    width: 100%;
-    max-width: 100%;
+    height: 95vh;
 }
 
 .home_article_title {
     position: relative;
-    height: 50vh;
+    height: 70vh;
     max-height: 600px;
     min-height: 400px;
 }
@@ -236,16 +408,16 @@ html, body {
 }
 
 .home_article_img {
-    height: 120vh;
-    max-height: 610px;
+    height: 100vh;
+    max-height: 76.8vh;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
     overflow: hidden;
     position: relative;
-    border-bottom-left-radius: 50% 89px;
-    border-bottom-right-radius: 50% 44px;
+    border-bottom-left-radius: 90% 18vh;
+    border-bottom-right-radius: 50% 0px;
     left: 10%;
 }
 
@@ -440,7 +612,7 @@ html, body {
 /* SECTION USABILITY */
 
 #usability{
-    height: 80vh;
+    height: 50vh;
 }
 
 /* SECTION USABILITY FIM*/
@@ -448,12 +620,13 @@ html, body {
 /* SECTION FEATURE */
 
 #features {
-    height: 110vh;
-    max-height: 110vh;
-    background-image: url('/img/futebol/feature_background_futebol.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    height: 100vh;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+#feature_title{
+    margin-bottom: 170px;
 }
 
 .feature_celular{
@@ -486,8 +659,10 @@ html, body {
 
 /* SECTION NETWORK */
 #network {
-    height: 89vh;
-    margin-top: 100px;
+    height: 128vh;
+    display: flex;
+    justify-content: end;
+    align-items: end;
 }
 
 .network_article_img{
@@ -568,4 +743,39 @@ html, body {
     box-shadow: color-mix(in srgb, var(--bege_500) 50%, transparent) 0px 0px 1px 15px;
     font-size: 60px;
     transition: font-size 0.3s ease;
+}
+/* SECTION MODALITY FIM */
+/* SECTION DOWNLOAD */
+
+.download_qrcode{
+    width: 70%;
+    height: auto;    
+}
+
+.download_store_btn{
+    width: 80%;
+    height: 50px;
+    object-fit: cover;
+}
+
+.download_store_btn:hover{
+    width: 100%;
+    height: 60px;
+    transition: width 0.3s ease;
+}
+
+/* SECTION DOWNLOAD FIM */
+
+/* FOOTER */
+
+footer {
+    height: 300px;
+    padding: 50px;
+    background-color: var(--green_300);
+    color: var(--blue_500);
+}
+
+.icone_footer{
+    width: 35px;
+    height: 35px;
 }

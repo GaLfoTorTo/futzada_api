@@ -19,10 +19,10 @@
                <a class="nav-link" href="#network">Network</a>
             </li>
             <li class="nav-item">
-               <a class="nav-link" href="#about_us">About Us</a>
+               <a class="nav-link" href="#modality">Modality</a>
             </li>
             <li class="nav-item">
-               <a class="nav-link" href="#reports">Reports</a>
+               <a class="nav-link" href="#download">Download</a>
             </li>
             <li class="nav-item">
                <a class="nav-link" href="#contact">Contact</a>
