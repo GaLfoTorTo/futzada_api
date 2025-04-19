@@ -9,8 +9,11 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Contracts\Auditable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Models\Player;
+use App\Models\Manager;
 
-class User extends Authenticatable implements Auditable
+class User extends Authenticatable implements Auditable, JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
     use \OwenIt\Auditing\Auditable;
@@ -20,10 +23,31 @@ class User extends Authenticatable implements Auditable
      *
      * @var array<int, string>
      */
+
+    protected $table = 'users';
     protected $fillable = [
-        'name',
+        'uuid',
+        'first_name',
+        'last_name',
+        'user_name',
         'email',
         'password',
+        'phone',
+        'born_date',
+        'visibility',
+        'photo',
+    ];
+    protected $auditInclude = [
+        'uuid',
+        'first_name',
+        'last_name',
+        'user_name',
+        'email',
+        'password',
+        'phone',
+        'born_date',
+        'visibility',
+        'photo',
     ];
 
     /**
@@ -33,7 +57,6 @@ class User extends Authenticatable implements Auditable
      */
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
     /**
@@ -45,4 +68,23 @@ class User extends Authenticatable implements Auditable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
+    public function player(){
+        return $this->hasOne(Player::class, 'user_id', 'id');
+    }
+    
+    public function manager(){
+        return $this->hasOne(Manager::class, 'user_id', 'id');
+    }
 }

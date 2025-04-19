@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 //CONTROLLERS
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +18,11 @@ use App\Http\Controllers\UsuarioController;
 */
 
 //CRIAR USUÁRIO
-Route::post('/user/create', [UsuarioController::class, 'create'])->name('create');
+Route::post('/user/create', [UserController::class, 'create'])->name('create');
 //ROTA DE LOGIN
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-//ROTAS INTERNAS (TOKEN SANCTUM)
+//ROTAS INTERNAS (TOKEN JWT)
 Route::middleware('auth:api')->group(function () {
     Route::get('/home', [HomeController::class, 'home']);
     Route::post('/logout', [AuthController::class, 'logout']);

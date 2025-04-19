@@ -14,9 +14,9 @@ function upload($data) {
         // DEFININDO PASTA ONDE SERÃO SALVOS OS ARQUIVOS
         $pasta = $data['pasta'];
         // VERIFICAR SE EXISTE UM ARQUIVO NOS DADOS RECEBIDOS
-        if ($request->hasFile('foto')) {
+        if ($request->hasFile('photo')) {
             // RESGATAR ARQUIVO
-            $file = $request->file('foto');
+            $file = $request->file('photo');
             // RENOMEAR ARQUIVO
             $nome_arquivo = renameData($file->getClientOriginalName());
             // RESGATAR A EXTENSÃO ORIGINAL DO ARQUIVO
@@ -47,21 +47,43 @@ function upload($data) {
         //CAPTURAR ERRO E ENVIAR PARA O LOG
         Log::channel('arquivos')->error("[Erro de upload arquivos][Usuario][Arquivos]", ['[message]' => $e->getMessage(), '[error]' => $e->getTraceAsString()]);
         //REDIRECIONAR PARA O FORMULÁRIO COM A MENSAGEM DE ERRO
-        return response()->json(['message' => 'Houve um erro ao salvar o arquivo.'], 400);
+        return ['message' => 'Houve um erro ao salvar o arquivo.'];
     }
 }
 
+//FUNÇÃO DE SLUG PARA REMOVER CARACTERS ESPECIAIS
 function renameData($nome){
-    //REMOVER ESPAÇOS
+    //REMOVER ESPAÇOS VAZIOS
     $new_name = str_replace(' ', '_', $nome);
-    //LETRAS COM ACENTO / CARACTERES ESPECIAIS
-    $comAcentos = array('à', 'á', 'â', 'ã', 'ä', 'å', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', 'ù', 'ü', 'ú', 'ÿ', 'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'O', 'Ù', 'Ü', 'Ú');
-    //LETRAS SEM ACENTO / CARACTERES ESPECIAIS
-    $semAcentos = array('a', 'a', 'a', 'a', 'a', 'a', 'c', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'n', 'o', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'y', 'A', 'A', 'A', 'A', 'A', 'A', 'C', 'E', 'E', 'E', 'E', 'I', 'I', 'I', 'I', 'N', 'O', 'O', 'O', 'O', 'O', 'O', 'U', 'U', 'U');
-    //SUBUSTITUIR LETRAS COM ACENTROS POR SEM ACENTO
-    $new_nome = str_replace($comAcentos, $semAcentos, $new_name);
-    //RETORNAR NOVO NOME
-    return $new_nome;
+    //MAPEAR CARACTERES ESPECIAIS
+    $map = [
+        'a' => ['à', 'á', 'â', 'ã', 'ä', 'å', 'ª'],
+        'c' => ['ç'],
+        'e' => ['è', 'é', 'ê', 'ë'],
+        'i' => ['ì', 'í', 'î', 'ï'],
+        'n' => ['ñ'],
+        'o' => ['ò', 'ó', 'ô', 'õ', 'ö', 'º', '°'],
+        'u' => ['ù', 'ú', 'û', 'ü'],
+        'y' => ['ý', 'ÿ'],
+        'A' => ['À', 'Á', 'Â', 'Ã', 'Ä', 'Å'],
+        'C' => ['Ç'],
+        'E' => ['È', 'É', 'Ê', 'Ë'],
+        'I' => ['Ì', 'Í', 'Î', 'Ï'],
+        'N' => ['Ñ'],
+        'O' => ['Ò', 'Ó', 'Ô', 'Õ', 'Ö'],
+        'U' => ['Ù', 'Ú', 'Û', 'Ü'],
+        ''  => ['.', ',', '!', '@', '#', '$', '%', '¨', '&', '*', '+', '=', '[', '{', ']', '}', '?', ';', ':']
+    ];
+    // Substituir caracteres especiais com base no mapeamento
+    //LOOP NO MAPA DE CARACTERES
+    foreach ($map as $replacement => $chars) {
+        //SUBSTITUIR CARACTERES ESPECIAIS COM BASE NO MAPA
+        $new_name = str_replace($chars, $replacement, $new_name);
+    }
+    //REMOVER ESPAÇOS VAZIOS
+    $new_name = str_replace(' ', '_', $nome);
+    //RETORNAR NOME AJUSTADO
+    return $new_name;
 }
 
 function removeCharEspeciais($text){
