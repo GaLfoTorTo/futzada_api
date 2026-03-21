@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('escalations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('manager_id');
-            $table->foreign('manager_id')->references('id')->on('managers')->onDelete('cascade');
-            $table->unsignedBigInteger('game_id');
-            $table->foreign('game_id')->references('id')->on('games')->onDelete('cascade');
+            $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
+            $table->foreignId('manager_id')->constrained('managers')->cascadeOnDelete();
             $table->string('formation')->nullable();
+            $table->json('starters')->nullable();
+            $table->json('reserves')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('escalacaos');
+        Schema::dropIfExists('escalations');
     }
 };

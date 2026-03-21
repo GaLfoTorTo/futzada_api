@@ -19,12 +19,16 @@ return new class extends Migration
             $table->string('user_name')->nullable();
             $table->string('email')->unique();
             $table->string('password')->nullable();
-            $table->string('phone', 13)->nullable();
+            $table->string('phone', 20)->nullable();
             $table->date('born_date')->nullable();
-            $table->enum('visibility',['Publico','Privado'])->default('Publico');
+            $table->text('modality')->nullable();
             $table->text('photo')->nullable();
+            $table->boolean('visibility')->default(true);
             $table->timestamps();
             $table->softDeletes();
+            
+            //INDEXS
+            $table->unique(['uuid', 'email','user_name']);
         });
     }
 

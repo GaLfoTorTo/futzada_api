@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('actions', function (Blueprint $table) {
+        Schema::create('user_configs', function (Blueprint $table) {
             $table->id();
-            $table->string('action');
-            $table->decimal('score',5,2);
-            $table->text('description')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('user_configs')->onDelete('cascade');
+            $table->string('main_modality');
+            $table->string('modalities');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('acaos');
+        Schema::dropIfExists('user_configs');
     }
 };

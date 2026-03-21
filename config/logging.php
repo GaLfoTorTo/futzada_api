@@ -127,9 +127,9 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
         //LOGS PERSONALIZADOS: CRIAÇÃO, EDIÇÃO REMOÇÃO DE REGISTROS
-        'registro' => [
+        'register' => [
             'driver' => 'single',
-            'path' => storage_path('logs/registro.log'),
+            'path' => storage_path('logs/register.log'),
             'level' => env('LOG_LEVEL', 'error'),
         ],
         //LOGS PERSONALIZADOS: AUTENTICAÇÃO
@@ -139,9 +139,15 @@ return [
             'level' => env('LOG_LEVEL', 'error'),
         ],
         //LOGS PERSONALIZADOS: UPLOAD DE ARQUIVOS
-        'arquivos' => [
+        'files' => [
             'driver' => 'single',
-            'path' => storage_path('logs/arquivos.log'),
+            'path' => storage_path('logs/files.log'),
+            'level' => env('LOG_LEVEL', 'error'),
+        ],
+        //LOGS PERSONALIZADOS: UPLOAD DE ARQUIVOS
+        'notifications' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/notifications.log'),
             'level' => env('LOG_LEVEL', 'error'),
         ],
     ],

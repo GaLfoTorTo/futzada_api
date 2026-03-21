@@ -12,6 +12,16 @@ use App\Models\Participant;
 
 class EventController extends Controller
 {
+    public function userEvents(Request $request){
+        $id = $request->input("user_id");
+        $events = Event::where('user_id', $id)->get();
+        return response()->json(['eventos' => $events], 200);
+    }
+
+    public function events(){
+        
+    }
+
     public function create(Request $request){
         //INICIALIZAR TRANSAÇÃO NO DB
         DB::beginTransaction();

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Contracts\Auditable;
-use App\Models\Event;
+use App\Models\Game;
 use App\Models\Participante;
 
 class Team extends Model implements Auditable
@@ -17,16 +17,45 @@ class Team extends Model implements Auditable
     protected $table = 'teams';
     protected $fillable = [
         'uuid',
-        'event_id',
         'name',
+        'emblem',
+        'game_id',
     ];
     protected $auditInclude = [
         'uuid',
-        'event_id',
         'name',
+        'emblem',
+        'game_id',
     ];
     
-    public function event(){
-        return $this->belongsTo(Event::class, 'id','event_id');
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'deleted_at' => 'datetime',
+    ];
+
+    // ─── Boot ────────────────────────────────────────────────────────────────
+
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::creating(function (Team $team) {
+            if (empty($team->uuid)) {
+                $team->uuid = (string) Str::uuid();
+            }
+        });
+    }
+
+    // ─── Relationships ────────────────────────────────────────────────────────
+
+    public function game(): BelongsTo
+    {
+        return $this->belongsTo(Game::class);
+    }
+
+    public function players(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'team_user')->withPivot('team_id','game_id','user_id','capitan')->withTimestamps();
     }
 }

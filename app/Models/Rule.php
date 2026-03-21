@@ -13,7 +13,7 @@ class Role extends Model implements Auditable
     use HasFactory, SoftDeletes;
     use \OwenIt\Auditing\Auditable;
 
-    protected $table = 'roles';
+    protected $table = 'rules';
     protected $fillable = [
         'event_id',
         'title',
@@ -25,7 +25,16 @@ class Role extends Model implements Auditable
         'description',
     ];
 
-    public function event(){
-        return $this->belongsTo(Event::class, 'id','event_id');
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'deleted_at' => 'datetime',
+    ];
+
+    // ─── Relationships ────────────────────────────────────────────────────────
+
+    public function event(): BelongsTo
+    {
+        return $this->belongsTo(Event::class);
     }
 }

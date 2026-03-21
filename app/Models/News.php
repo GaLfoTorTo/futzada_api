@@ -16,18 +16,39 @@ class News extends Model implements Auditable
     protected $table = 'news';
     protected $fillable = [
         'event_id',
+        'user_id',
+        'type_id',
         'title',
-        'type',
         'description',
     ];
     protected $auditInclude = [
         'event_id',
+        'user_id',
+        'type_id',
         'title',
-        'type',
         'description',
     ];
 
-    public function event(){
-        return $this->belongsTo(Event::class, 'id','event_id');
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'deleted_at' => 'datetime',
+    ];
+
+    // ─── Relationships ────────────────────────────────────────────────────────
+
+    public function type(): BelongsTo
+    {
+        return $this->belongsTo(EventType::class, 'type_id');
+    }
+
+    public function event(): BelongsTo
+    {
+        return $this->belongsTo(Event::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

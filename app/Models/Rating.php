@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Contracts\Auditable;
 use App\Models\Event;
-use App\Models\Participant;
+use App\Models\User;
 
 class Rating extends Model implements Auditable
 {
@@ -16,29 +16,53 @@ class Rating extends Model implements Auditable
 
     protected $table = 'ratings';
     protected $fillable = [
+        'player_id',
         'event_id',
-        'participant_id',
-        'modality',
+        'user_id',
+        'role',
         'points',
         'avarage',
         'valuation',
         'price',
+        'games',
     ];
     protected $auditInclude = [
+        'player_id',
         'event_id',
-        'participant_id',
-        'modality',
+        'user_id',
+        'role',
         'points',
         'avarage',
         'valuation',
         'price',
+        'games',
     ];
 
-    public function event(){
-        return $this->belongsTo(Event::class, 'id','event_id');
+    protected $casts = [
+        'points'     => 'float',
+        'avarage'    => 'float',
+        'valuation'  => 'float',
+        'price'      => 'float',
+        'games'      => 'integer',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'deleted_at' => 'datetime',
+    ];
+
+    // ─── Relationships ────────────────────────────────────────────────────────
+
+    public function player(): BelongsTo
+    {
+        return $this->belongsTo(Player::class);
     }
-    
-    public function participant(){
-        return $this->belongsTo(Participant::class, 'id','participant_id');
+
+    public function event(): BelongsTo
+    {
+        return $this->belongsTo(Event::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

@@ -12,6 +12,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(PosicoesSeed::class);
+        $this->call(PositionSeed::class);
+        $this->call(UserSeed::class);
+        $this->call(EventSeed::class);
+        $this->call(ParticipantSeed::class);
     }
 }

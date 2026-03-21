@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('event_id');
-            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
-            $table->unsignedBigInteger('participant_id');
-            $table->foreign('participant_id')->references('id')->on('participants')->onDelete('cascade');
-            $table->enum('modality', ['Player','Manager','Referee'])->default('Player');
-            $table->decimal('points',8,2)->default(0.0);
-            $table->decimal('avarage',8,2)->default(0.0);
-            $table->decimal('valuation',8,2)->default(0.0);
-            $table->decimal('price',8,2)->nullable();
+            $table->foreignId('player_id')->constrained('players')->cascadeOnDelete();
+            $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->enum('role', ['Player','Manager','Referee'])->default('Player');
+            $table->decimal('points', 8, 2)->default(0.0);
+            $table->decimal('avarage', 8, 2)->default(0.0);
+            $table->decimal('valuation', 10, 2)->default(0.0);
+            $table->decimal('price', 10, 2)->default(0.0);
+            $table->integer('games')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pontuacaos');
+        Schema::dropIfExists('ratings');
     }
 };

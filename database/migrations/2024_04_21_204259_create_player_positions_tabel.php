@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade');
             $table->boolean('main')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

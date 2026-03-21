@@ -16,22 +16,13 @@ return new class extends Migration
             $table->uuid('uuid')->unique();
             $table->string('title');
             $table->text('bio')->nullable();
-            $table->string('address')->nullable();
-            $table->string('number')->nullable();
-            $table->string('city')->nullable();
-            $table->string('state')->nullable();
-            $table->string('complement')->nullable();
-            $table->string('country')->nullable();
-            $table->string('zip_code')->nullable();
-            $table->string('days_week')->nullable();
-            $table->date('date')->nullable();
+            $table->json('date')->nullable();
             $table->time('start_time')->nullable();
             $table->time('end_time')->nullable();
-            $table->string('category');
-            $table->integer('qtd_players')->nullable();
-            $table->enum('visibility',['Publica','Privada'])->default('Publica');
-            $table->boolean('allow_collaborators')->default(false);
+            $table->string('modality')->default('Football');
+            $table->boolean('collaborators')->default(false);
             $table->text('photo')->nullable();
+            $table->boolean('visibility')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -42,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('peladas');
+        Schema::dropIfExists('events');
     }
 };

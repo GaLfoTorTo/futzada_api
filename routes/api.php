@@ -21,6 +21,9 @@ use App\Http\Controllers\UserController;
 Route::post('/user/create', [UserController::class, 'create'])->name('create');
 //ROTA DE LOGIN
 Route::post('/login', [AuthController::class, 'login'])->name('login');
+//ROTA DE LOGIN GOOGLE
+Route::post('/login/google', [AuthController::class, 'loginGoogle'])->name('loginGoogle');
+
 
 //ROTAS INTERNAS (TOKEN JWT)
 Route::middleware('auth:api')->group(function () {

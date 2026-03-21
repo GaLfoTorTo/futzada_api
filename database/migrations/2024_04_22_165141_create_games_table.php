@@ -13,15 +13,13 @@ return new class extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->integer('number');
-            $table->unsignedBigInteger('event_id');
-            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
-            $table->unsignedBigInteger('referee_id')->nullable();
-            $table->foreign('referee_id')->references('id')->on('users')->onDelete('set null');
+            $table->integer('number')->nullable();
             $table->integer('duration')->nullable();
             $table->time('start_time')->nullable();
             $table->time('end_time')->nullable();
-            $table->enum('status', ['scheduled', 'in_progress', 'completed', 'cancelled'])->default('scheduled');
+            $table->enum('status', ['scheduled', 'in_progress', 'finished', 'cancelled'])->nullable();
+            $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
+            $table->foreignId('referee_id')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('partidas');
+        Schema::dropIfExists('games');
     }
 };

@@ -18,35 +18,48 @@ class Participant extends Model implements Auditable
 
     protected $table = 'participants';
     protected $fillable = [
-        'event_id',
         'user_id',
+        'event_id',
         'role',
         'permissions',
         'status',
-        'joinedt_at'
     ];
+    
     protected $auditInclude = [
-        'event_id',
         'user_id',
+        'event_id',
         'role',
         'permissions',
         'status',
-        'joinedt_at'
     ];
 
-    public function user(){
-        return $this->belongsTo(User::class, 'id','user_id');
+    protected $casts = [
+        'role'        => 'array',
+        'permissions' => 'array',
+        'created_at'  => 'datetime',
+        'updated_at'  => 'datetime',
+        'deleted_at'  => 'datetime',
+    ];
+
+    // ─── Relationships ────────────────────────────────────────────────────────
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function event(): BelongsTo
+    {
+        return $this->belongsTo(Event::class);
     }
     
-    public function event(){
-        return $this->belongsTo(Event::class, 'id','event_id');
-    }
-    
-    public function pontuations(){
+    public function pontuations(): BelongsTo
+    {
         return $this->hasMany(Pontuation::class);
     }
    
-    public function performance(){
+    public function performance(): BelongsTo
+    {
         return $this->hasMany(Performance::class);
     }
 }

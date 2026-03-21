@@ -16,21 +16,37 @@ class Player extends Model implements Auditable
 
     protected $table = 'players';
     protected $fillable = [
-        'user_id',
-        'best_side',
-        'type',
+        "user_id",
+        "best_side",
+        "type",
+        'main_position',
+        'positions',
     ];
     protected $auditInclude = [
-        'user_id',
-        'best_side',
-        'type',
+        "user_id",
+        "best_side",
+        "type",
+        'main_position',
+        'positions',
     ];
 
-    public function user(){
+    protected $casts = [
+        'main_position' => 'array',
+        'positions'     => 'array',
+        'created_at'    => 'datetime',
+        'updated_at'    => 'datetime',
+        'deleted_at'    => 'datetime',
+    ];
+
+    // ─── Relationships ────────────────────────────────────────────────────────
+
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function positions(){
-        return $this->beLongsToMany(Position::class, 'player_positions','id','position_id');
+    public function ratings(): HasMany
+    {
+        return $this->hasMany(Rating::class);
     }
 }

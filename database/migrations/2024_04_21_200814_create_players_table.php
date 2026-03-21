@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('players', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->enum('best_side',['right','left'])->default('right');
-            $table->string('type', 30)->nullable();
-            $table->timestamps();
+            $table->foreignId('user_id')->constrained('user')->cascadeOnDelete();
+            $table->enum('best_side',['Right','Left'])->default('Right');
+            $table->string('type')->nullable();
+            $table->json('main_position')->nullable();
+            $table->json('positions')->nullable();
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 

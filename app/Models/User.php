@@ -4,10 +4,11 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Contracts\Auditable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use App\Models\Player;
@@ -18,12 +19,6 @@ class User extends Authenticatable implements Auditable, JWTSubject
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
     use \OwenIt\Auditing\Auditable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-
     protected $table = 'users';
     protected $fillable = [
         'uuid',
@@ -32,44 +27,75 @@ class User extends Authenticatable implements Auditable, JWTSubject
         'user_name',
         'email',
         'password',
-        'phone',
         'born_date',
-        'visibility',
+        'phone',
         'photo',
+        'privacy',
     ];
-    protected $auditInclude = [
+    protected $audiInclude = [
         'uuid',
         'first_name',
         'last_name',
         'user_name',
         'email',
         'password',
-        'phone',
         'born_date',
-        'visibility',
+        'phone',
         'photo',
+        'privacy',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
+        'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
+        'born_date'         => 'date',
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        'password'          => 'hashed',
+        'created_at'        => 'datetime',
+        'updated_at'        => 'datetime',
+        'deleted_at'        => 'datetime',
     ];
 
-    
+    // ─── Boot ────────────────────────────────────────────────────────────────
+
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::creating(function (User $user) {
+            if (empty($user->uuid)) {
+                $user->uuid = (string) Str::uuid();
+            }
+        });
+    }
+
+    // ─── Relationships ────────────────────────────────────────────────────────
+
+    public function config(): HasOne
+    {
+        return $this->hasOne(UserConfig::class);
+    }
+
+    public function player(): HasOne
+    {
+        return $this->hasOne(Player::class);
+    }
+
+    public function manager(): HasOne
+    {
+        return $this->hasOne(Manager::class);
+    }
+
+    public function participants(): HasMany
+    {
+        return $this->hasMany(Participant::class);
+    }
+
+    // ─── Token Methods ────────────────────────────────────────────────────────
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
@@ -78,13 +104,5 @@ class User extends Authenticatable implements Auditable, JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
-    }
-
-    public function player(){
-        return $this->hasOne(Player::class, 'user_id', 'id');
-    }
-    
-    public function manager(){
-        return $this->hasOne(Manager::class, 'user_id', 'id');
     }
 }

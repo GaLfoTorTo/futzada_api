@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('managers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('team');
-            $table->string('alias');
-            $table->string('primary');
-            $table->string('secondary');
-            $table->json('emblem');
-            $table->json('uniform');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('team')->nullable();
+            $table->string('alias')->nullable();
+            $table->string('primary')->nullable();
+            $table->string('secondary')->nullable();
+            $table->json('emblem')->nullable();
+            $table->json('uniform')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tecnicos');
+        Schema::dropIfExists('managers');
     }
 };

@@ -13,19 +13,16 @@ return new class extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('event_id');
-            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
-            $table->unsignedBigInteger('game_id')->nullable();
-            $table->foreign('game_id')->references('id')->on('games')->onDelete('cascade');
-            $table->unsignedBigInteger('team_a_id');
-            $table->foreign('team_a_id')->references('id')->on('teams')->onDelete('cascade');
-            $table->unsignedBigInteger('team_b_id');
-            $table->foreign('team_b_id')->references('id')->on('teams')->onDelete('cascade');
+            $table->foreignId('game_id')->constrained('games')->cascadeOnDelete();
+            $table->foreignId('team_a_id')->constrained('teams')->cascadeOnDelete();
+            $table->foreignId('team_b_id')->constrained('teams')->cascadeOnDelete();
             $table->integer('team_a_score')->default(0);
             $table->integer('team_b_score')->default(0);
-            $table->enum('status', ['pending', 'confirmed', 'cancelled'])->default('pending');
             $table->integer('duration')->nullable();
+            $table->softDeletes();
             $table->timestamps();
+
+            $table->unique(['game_id']);
         });
     }
 
@@ -34,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('resultados');
+        Schema::dropIfExists('results');
     }
 };

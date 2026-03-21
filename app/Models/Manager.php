@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Contracts\Auditable;
 use App\Models\User;
 use App\Models\Escalacao;
+use App\Models\Economy;
 
 class Manager extends Model implements Auditable
 {
@@ -34,11 +35,26 @@ class Manager extends Model implements Auditable
         'uniform',
     ];
 
-    public function user(){
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'deleted_at' => 'datetime',
+    ];
+
+    // ─── Relationships ────────────────────────────────────────────────────────
+
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
-    
-    public function escalation(){
+
+    public function escalations(): HasMany
+    {
         return $this->hasMany(Escalation::class);
+    }
+
+    public function economies(): HasMany
+    {
+        return $this->hasMany(Economy::class);
     }
 }

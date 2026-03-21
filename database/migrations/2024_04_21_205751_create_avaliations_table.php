@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('avaliations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('event_id');
-            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
-            $table->string('title');
-            $table->string('description')->nullable();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
+            $table->decimal('avaliation', 3, 1)->nullable()->default(0.0);
+            $table->text('comment')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->unique(['user_id', 'event_id']);
         });
     }
 
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('regras');
+        Schema::dropIfExists('avaliations');
     }
 };

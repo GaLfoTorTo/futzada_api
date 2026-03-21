@@ -19,36 +19,53 @@ class Game extends Model implements Auditable
     protected $table = 'games';
     protected $fillable = [
         'number',
-        'event_id',
-        'referee_id',
         'duration',
         'start_time',
         'end_time',
-        'status'
-    ];
-    protected $auditInclude = [
-        'numero',
+        'status',
         'event_id',
         'referee_id',
-        'duration',
-        'start_time',
-        'end_time',
-        'status'
     ];
 
-    public function event(){
-        return $this->belongsTo(Event::class, 'id','event_id');
+    protected $auditInclude = [
+        'number',
+        'duration',
+        'start_time',
+        'end_time',
+        'status',
+        'event_id',
+        'referee_id',
+    ];
+
+    protected $casts = [
+        'number'     => 'integer',
+        'duration'   => 'integer',
+        'start_time' => 'time',
+        'end_time'   => 'time',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'deleted_at' => 'datetime',
+    ];
+
+    // ─── Relationships ────────────────────────────────────────────────────────
+
+    public function event(): BelongsTo
+    {
+        return $this->belongsTo(Event::class);
     }
-    
-    public function referee(){
-        return $this->belongsTo(User::class, 'id','referee_id');
+
+    public function referee(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'referee_id');
     }
-    
-    public function result(){
+
+    public function result(): HasOne
+    {
         return $this->hasOne(Result::class);
     }
-   
-    public function teams(){
+
+    public function teams(): HasMany
+    {
         return $this->hasMany(Team::class);
     }
 }

@@ -17,38 +17,46 @@ class Result extends Model implements Auditable
 
     protected $table = 'results';
     protected $fillable = [
-        'event_id',
         'game_id',
         'team_a_id',
         'team_b_id',
         'team_a_score',
         'team_b_score',
-        'status',
         'duration',
     ];
+    
     protected $auditInclude = [
-        'event_id',
+        'game_id',
         'team_a_id',
         'team_b_id',
         'team_a_score',
         'team_b_score',
-        'status',
         'duration',
     ];
 
-    public function event(){
-        return $this->belongsTo(Event::class, 'id','event_id');
-    }
-    
-    public function game(){
-        return $this->belongsTo(Game::class, 'id','game_id');
+    protected $casts = [
+        'team_a_score' => 'integer',
+        'team_b_score' => 'integer',
+        'duration'     => 'integer',
+        'created_at'   => 'datetime',
+        'updated_at'   => 'datetime',
+        'deleted_at'   => 'datetime',
+    ];
+
+    // ─── Relationships ────────────────────────────────────────────────────────
+
+    public function game(): BelongsTo
+    {
+        return $this->belongsTo(Game::class);
     }
 
-    public function team_a(){
-        return $this->beLongsTo(Team::class, 'id','team_a_id');
+    public function teamA(): BelongsTo
+    {
+        return $this->belongsTo(Team::class, 'team_a_id');
     }
-    
-    public function team_b(){
-        return $this->beLongsTo(Team::class, 'id','team_b_id');
+
+    public function teamB(): BelongsTo
+    {
+        return $this->belongsTo(Team::class, 'team_b_id');
     }
 }

@@ -13,16 +13,15 @@ return new class extends Migration
     {
         Schema::create('participants', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('event_id');
-            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->json('roles')->nullable();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
+            $table->json('role')->nullable();
             $table->json('permissions')->nullable();
             $table->enum('status', ['Avaliable','Doubt','Injured','Out'])->default('Avaliable');
-            $table->dateTime('joined_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->unique(['user_id', 'event_id']);
         });
     }
 
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('participantes');
+        Schema::dropIfExists('participants');
     }
 };
