@@ -14,12 +14,12 @@ class Acao extends Model implements Auditable
 
     protected $table = 'actions';
     protected $fillable = [
-        'action',
+        'title',
         'score',
         'description',
     ];
     protected $auditInclude = [
-        'action',
+        'title',
         'score',
         'description',
     ];

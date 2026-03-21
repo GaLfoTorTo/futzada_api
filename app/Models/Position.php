@@ -14,11 +14,11 @@ class Position extends Model implements Auditable
 
     protected $table = 'positions';
     protected $fillable = [
-        'position',
+        'title',
         'alias',
     ];
     protected $auditInclude = [
-        'position',
+        'title',
         'alias',
     ];
 }

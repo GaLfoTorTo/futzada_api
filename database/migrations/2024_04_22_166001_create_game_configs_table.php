@@ -20,8 +20,8 @@ return new class extends Migration
             $table->integer('players_per_team')->nullable();
             $table->integer('points')->nullable();
             $table->json('config')->nullable();
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
             $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
-            $table->foreignId('type_id')->constrained('types')->cascadeOnDelete();
+            $table->foreignId('type_id')->constrained('event_news')->cascadeOnDelete();
             $table->string('title');
             $table->text('description');
             $table->softDeletes();

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
-            $table->string('position');
+            $table->string('title');
             $table->string('alias',3);
             $table->timestamps();
             $table->softDeletes();
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posicaos');
+        Schema::dropIfExists('positions');
     }
 };

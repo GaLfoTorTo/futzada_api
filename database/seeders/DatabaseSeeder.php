@@ -12,7 +12,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        //ESTRUTURA
         $this->call(PositionSeed::class);
+        $this->call(ActionSeed::class);
+        $this->call(GameEvenTypeSeed::class);
+        $this->call(EventNewsSeed::class);
+        //DADOS
         $this->call(UserSeed::class);
         $this->call(EventSeed::class);
         $this->call(ParticipantSeed::class);

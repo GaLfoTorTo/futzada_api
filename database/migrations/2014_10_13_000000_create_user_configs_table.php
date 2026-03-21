@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('main_modality');
             $table->string('modalities');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

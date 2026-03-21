@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('actions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('title');
             $table->text('description')->nullable();
-            $table->decimal('score',5,2);
+            $table->decimal('score',5,2)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('acaos');
+        Schema::dropIfExists('actions');
     }
 };

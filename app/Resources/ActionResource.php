@@ -5,18 +5,14 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class GameEventResource extends JsonResource
+class ActionResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
         return [
             'id'          => $this->id,
-            'gameId'      => $this->game_id,
-            'teamId'      => $this->team_id,
-            'userId'      => $this->user_id,
-            'gameEvent'   => $this->whenLoaded('gameEventType'),
-            'minute'      => $this->minute,
             'title'       => $this->title,
+            'score'       => $this->score,
             'description' => $this->description,
             'createdAt'   => $this->created_at?->toIso8601String(),
             'updatedAt'   => $this->updated_at?->toIso8601String(),

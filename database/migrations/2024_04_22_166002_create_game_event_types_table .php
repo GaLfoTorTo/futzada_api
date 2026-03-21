@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('event_news', function (Blueprint $table) {
+        Schema::create('game_event_types', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->foreignId('action_id')->nullable()->constrained('actions')->nullOnDelete();
             $table->timestamps();
             $table->softDeletes();
+
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('event_news');
+        Schema::dropIfExists('game_event_types');
     }
 };

@@ -19,8 +19,8 @@ return new class extends Migration
             $table->integer('team_a_score')->default(0);
             $table->integer('team_b_score')->default(0);
             $table->integer('duration')->nullable();
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->unique(['game_id']);
         });

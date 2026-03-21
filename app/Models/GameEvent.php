@@ -10,7 +10,6 @@ use App\Models\Game;
 use App\Models\GameEventType;
 use App\Models\User;
 use App\Models\Team;
-use App\Models\Action;
 
 class GameEvent extends Model implements Auditable
 {
@@ -20,21 +19,21 @@ class GameEvent extends Model implements Auditable
     protected $table = 'game_events';
     protected $fillable = [
         "game_id",
-        "userId",
-        "teamId",
-        "action_id",
-        "minute",
+        "user_id",
+        "team_id",
+        "game_event_type_id",
         "title",
         "description",
+        "minute",
     ];
     protected $auditInclude = [
         "game_id",
-        "userId",
-        "teamId",
-        "action_id",
-        "minute",
+        "user_id",
+        "team_id",
+        "game_event_type_id",
         "title",
         "description",
+        "minute",
     ];
 
     public function game(): BelongsTo
@@ -42,9 +41,9 @@ class GameEvent extends Model implements Auditable
         return $this->belongsTo(Game::class);
     }
     
-    public function action(): BelongsTo
+    public function gameEventType(): BelongsTo
     {
-        return $this->belongsTo(Action::class);
+        return $this->belongsTo(GameEventType::class);
     }
 
     public function team(): BelongsTo

@@ -15,13 +15,14 @@ return new class extends Migration
             $table->id();
             $table->foreignId('game_id')->constrained('games')->cascadeOnDelete();
             $table->foreignId('team_id')->constrained('teams')->cascadeOnDelete();
-            $table->foreignId('action_id')->constrained('actions')->cascadeOnDelete();
             $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
-            $table->integer('minute')->nullable();
+            $table->foreignId('game_event_type_id')->constrained('game_event_types')->cascadeOnDelete();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
-            $table->softDeletes();
+            $table->integer('minute')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

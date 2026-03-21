@@ -12,13 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('players', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained('user')->cascadeOnDelete();
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->enum('best_side',['Right','Left'])->default('Right');
             $table->string('type')->nullable();
             $table->json('main_position')->nullable();
             $table->json('positions')->nullable();
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jogadors');
+        Schema::dropIfExists('players');
     }
 };

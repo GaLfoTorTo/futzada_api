@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('player_positions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('player_id');
-            $table->foreign('player_id')->references('id')->on('players')->onDelete('cascade');
-            $table->unsignedBigInteger('position_id');
-            $table->foreign('position_id')->references('id')->on('positions')->onDelete('cascade');
+            $table->foreignId('player_id')->constrained('players')->cascadeOnDelete();
+            $table->foreignId('position_id')->constrained('positions')->cascadeOnDelete();
             $table->boolean('main')->default(false);
             $table->timestamps();
             $table->softDeletes();
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jogador_posicaos');
+        Schema::dropIfExists('player_positions');
     }
 };
