@@ -27,6 +27,12 @@ use App\Models\Usuario;
 |
 */
 
+//LANDING PAGE ROUTE
 Route::get('/', function () {
     return view('landing');
 });
+
+//APPLICATION ROUTES
+Route::get('/{any}', function () {
+    return view('app');
+})->where('any', '.*');

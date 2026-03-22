@@ -1,0 +1,170 @@
+/* BTN COLORS */
+.fz-btn-green-700 { background-color: var(--green_700) !important; color: var(--blue_500) }
+.fz-btn-green-500 { background-color: var(--green_500) !important; color: var(--blue_500) }
+.fz-btn-green-300 { background-color: var(--green_300) !important; color: var(--blue_500) }
+.fz-btn-green-100 { background-color: var(--green_100) !important; color: var(--blue_500) }
+
+.fz-btn-bege-700 { background-color: var(--bege_700) !important; color: var(--blue_500) }
+.fz-btn-bege-500 { background-color: var(--bege_500) !important; color: var(--blue_500) }
+.fz-btn-bege-300 { background-color: var(--bege_300) !important; color: var(--blue_500) }
+.fz-btn-bege-100 { background-color: var(--bege_100) !important; color: var(--blue_500) }
+
+.fz-btn-orange-700 { background-color: var(--orange_700) !important; color: var(--blue_500) }
+.fz-btn-orange-500 { background-color: var(--orange_500) !important; color: var(--blue_500) }
+.fz-btn-orange-300 { background-color: var(--orange_300) !important; color: var(--blue_500) }
+.fz-btn-orange-100 { background-color: var(--orange_100) !important; color: var(--blue_500) }
+
+.fz-btn-red-700 { background-color: var(--red_700) !important; color: var(--white) }
+.fz-btn-red-500 { background-color: var(--red_500) !important; color: var(--white) }
+.fz-btn-red-300 { background-color: var(--red_300) !important; color: var(--white) }
+.fz-btn-red-100 { background-color: var(--red_100) !important; color: var(--white) }
+
+.fz-btn-yellow-700 { background-color: var(--yellow_700) !important; color: var(--dark_700) }
+.fz-btn-yellow-500 { background-color: var(--yellow_500) !important; color: var(--dark_700) }
+.fz-btn-yellow-300 { background-color: var(--yellow_300) !important; color: var(--dark_700) }
+.fz-btn-yellow-100 { background-color: var(--yellow_100) !important; color: var(--dark_700) }
+
+.fz-btn-blue-700 { background-color: var(--blue_700) !important; color: var(--white) }
+.fz-btn-blue-500 { background-color: var(--blue_500) !important; color: var(--white) }
+.fz-btn-blue-300 { background-color: var(--blue_300) !important; color: var(--white) }
+.fz-btn-blue-100 { background-color: var(--blue_100) !important; color: var(--white) }
+
+.fz-btn-purple-700 { background-color: var(--purple_700) !important; color: var(--white) }
+.fz-btn-purple-500 { background-color: var(--purple_500) !important; color: var(--white) }
+.fz-btn-purple-300 { background-color: var(--purple_300) !important; color: var(--white) }
+.fz-btn-purple-100 { background-color: var(--purple_100) !important; color: var(--white) }
+
+.fz-btn-cyan-700 { background-color: var(--cyan_700) !important; color: var(--white) }
+.fz-btn-cyan-500 { background-color: var(--cyan_500) !important; color: var(--white) }
+.fz-btn-cyan-300 { background-color: var(--cyan_300) !important; color: var(--white) }
+.fz-btn-cyan-100 { background-color: var(--cyan_100) !important; color: var(--white) }
+
+.fz-btn-brown-700 { background-color: var(--brown_700) !important; color: var(--white) }
+.fz-btn-brown-500 { background-color: var(--brown_500) !important; color: var(--white) }
+.fz-btn-brown-300 { background-color: var(--brown_300) !important; color: var(--white) }
+.fz-btn-brown-100 { background-color: var(--brown_100) !important; color: var(--white) }
+
+.fz-btn-dark-700 { background-color: var(--dark_700) !important; color: var(--white) }
+.fz-btn-dark-500 { background-color: var(--dark_500) !important; color: var(--white) }
+.fz-btn-dark-300 { background-color: var(--dark_300) !important; color: var(--white) }
+
+.fz-btn-gray-700 { background-color: var(--gray_700) !important; color: var(--white) }
+.fz-btn-gray-500 { background-color: var(--gray_500) !important; color: var(--white) }
+.fz-btn-gray-300 { background-color: var(--gray_300) !important; color: var(--white) }
+
+.fz-btn-light { background-color: var(--dark_300) !important; color: var(--dark_700) }
+.fz-btn-white { background-color: var(--blue_500) !important; color: var(--blue_500) }
+
+/* BTN OUTLINE COLORS */
+.fz-btn-outline-green-700 { border: 2px solid  var(--green_700) !important; color: var(--blue_500) }
+.fz-btn-outline-green-500 { border: 2px solid  var(--green_500) !important; color: var(--blue_500) }
+.fz-btn-outline-green-300 { border: 2px solid  var(--green_300) !important; color: var(--blue_500) }
+.fz-btn-outline-green-100 { border: 2px solid  var(--green_100) !important; color: var(--blue_500) }
+
+.fz-btn-outline-bege-700 { border: 2px solid  var(--bege_700) !important; color: var(--blue_500) }
+.fz-btn-outline-bege-500 { border: 2px solid  var(--bege_500) !important; color: var(--blue_500) }
+.fz-btn-outline-bege-300 { border: 2px solid  var(--bege_300) !important; color: var(--blue_500) }
+.fz-btn-outline-bege-100 { border: 2px solid  var(--bege_100) !important; color: var(--blue_500) }
+
+.fz-btn-outline-orange-700 { border: 2px solid  var(--orange_700) !important; color: var(--blue_500) }
+.fz-btn-outline-orange-500 { border: 2px solid  var(--orange_500) !important; color: var(--blue_500) }
+.fz-btn-outline-orange-300 { border: 2px solid  var(--orange_300) !important; color: var(--blue_500) }
+.fz-btn-outline-orange-100 { border: 2px solid  var(--orange_100) !important; color: var(--blue_500) }
+
+.fz-btn-outline-red-700 { border: 2px solid  var(--red_700) !important; color: var(--white) }
+.fz-btn-outline-red-500 { border: 2px solid  var(--red_500) !important; color: var(--white) }
+.fz-btn-outline-red-300 { border: 2px solid  var(--red_300) !important; color: var(--white) }
+.fz-btn-outline-red-100 { border: 2px solid  var(--red_100) !important; color: var(--white) }
+
+.fz-btn-outline-yellow-700 { border: 2px solid  var(--yellow_700) !important; color: var(--dark_700) }
+.fz-btn-outline-yellow-500 { border: 2px solid  var(--yellow_500) !important; color: var(--dark_700) }
+.fz-btn-outline-yellow-300 { border: 2px solid  var(--yellow_300) !important; color: var(--dark_700) }
+.fz-btn-outline-yellow-100 { border: 2px solid  var(--yellow_100) !important; color: var(--dark_700) }
+
+.fz-btn-outline-blue-700 { border: 2px solid  var(--blue_700) !important; color: var(--white) }
+.fz-btn-outline-blue-500 { border: 2px solid  var(--blue_500) !important; color: var(--white) }
+.fz-btn-outline-blue-300 { border: 2px solid  var(--blue_300) !important; color: var(--white) }
+.fz-btn-outline-blue-100 { border: 2px solid  var(--blue_100) !important; color: var(--white) }
+
+.fz-btn-outline-purple-700 { border: 2px solid  var(--purple_700) !important; color: var(--white) }
+.fz-btn-outline-purple-500 { border: 2px solid  var(--purple_500) !important; color: var(--white) }
+.fz-btn-outline-purple-300 { border: 2px solid  var(--purple_300) !important; color: var(--white) }
+.fz-btn-outline-purple-100 { border: 2px solid  var(--purple_100) !important; color: var(--white) }
+
+.fz-btn-outline-cyan-700 { border: 2px solid  var(--cyan_700) !important; color: var(--white) }
+.fz-btn-outline-cyan-500 { border: 2px solid  var(--cyan_500) !important; color: var(--white) }
+.fz-btn-outline-cyan-300 { border: 2px solid  var(--cyan_300) !important; color: var(--white) }
+.fz-btn-outline-cyan-100 { border: 2px solid  var(--cyan_100) !important; color: var(--white) }
+
+.fz-btn-outline-brown-700 { border: 2px solid  var(--brown_700) !important; color: var(--white) }
+.fz-btn-outline-brown-500 { border: 2px solid  var(--brown_500) !important; color: var(--white) }
+.fz-btn-outline-brown-300 { border: 2px solid  var(--brown_300) !important; color: var(--white) }
+.fz-btn-outline-brown-100 { border: 2px solid  var(--brown_100) !important; color: var(--white) }
+
+.fz-btn-outline-dark-700 { border: 2px solid  var(--dark_700) !important; color: var(--white) }
+.fz-btn-outline-dark-500 { border: 2px solid  var(--dark_500) !important; color: var(--white) }
+.fz-btn-outline-dark-300 { border: 2px solid  var(--dark_300) !important; color: var(--white) }
+
+.fz-btn-outline-gray-700 { border: 2px solid  var(--gray_700) !important; color: var(--white) }
+.fz-btn-outline-gray-500 { border: 2px solid  var(--gray_500) !important; color: var(--white) }
+.fz-btn-outline-gray-300 { border: 2px solid  var(--gray_300) !important; color: var(--white) }
+
+.fz-btn-outline-light { border: 2px solid var(--dark_300) !important; color: var(--dark_700) }
+.fz-btn-outline-white { border: 2px solid var(--blue_500) !important; color: var(--blue_500) }
+
+/* BTN HOUVERED  */
+.fz-btn-green-700:hover, .fz-btn-outline-green-700:hover { box-shadow: color-mix(in srgb, var(--green_700) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-green-500:hover, .fz-btn-outline-green-500:hover { box-shadow: color-mix(in srgb, var(--green_500) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-green-300:hover, .fz-btn-outline-green-300:hover { box-shadow: color-mix(in srgb, var(--green_300) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-green-100:hover, .fz-btn-outline-green-100:hover { box-shadow: color-mix(in srgb, var(--green_100) 50%, transparent) 0px 0px 1px 8px;}
+
+.fz-btn-bege-700:hover, .fz-btn-outline-bege-700:hover { box-shadow: color-mix(in srgb, var(--bege_700) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-bege-500:hover, .fz-btn-outline-bege-500:hover { box-shadow: color-mix(in srgb, var(--bege_500) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-bege-300:hover, .fz-btn-outline-bege-300:hover { box-shadow: color-mix(in srgb, var(--bege_300) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-bege-100:hover, .fz-btn-outline-bege-100:hover { box-shadow: color-mix(in srgb, var(--bege_100) 50%, transparent) 0px 0px 1px 8px;}
+
+.fz-btn-orange-700:hover, .fz-btn-outline-orange-700:hover { box-shadow: color-mix(in srgb, var(--orange_700) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-orange-500:hover, .fz-btn-outline-orange-500:hover { box-shadow: color-mix(in srgb, var(--orange_500) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-orange-300:hover, .fz-btn-outline-orange-300:hover { box-shadow: color-mix(in srgb, var(--orange_300) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-orange-100:hover, .fz-btn-outline-orange-100:hover { box-shadow: color-mix(in srgb, var(--orange_100) 50%, transparent) 0px 0px 1px 8px;}
+
+.fz-btn-red-700:hover, .fz-btn-outline-red-700:hover { box-shadow: color-mix(in srgb, var(--red_700) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-red-500:hover, .fz-btn-outline-red-500:hover { box-shadow: color-mix(in srgb, var(--red_500) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-red-300:hover, .fz-btn-outline-red-300:hover { box-shadow: color-mix(in srgb, var(--red_300) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-red-100:hover, .fz-btn-outline-red-100:hover { box-shadow: color-mix(in srgb, var(--red_100) 50%, transparent) 0px 0px 1px 8px;}
+
+.fz-btn-yellow-700:hover, .fz-btn-outline-yellow-700:hover { box-shadow: color-mix(in srgb, var(--yellow_700) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-yellow-500:hover, .fz-btn-outline-yellow-500:hover { box-shadow: color-mix(in srgb, var(--yellow_500) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-yellow-300:hover, .fz-btn-outline-yellow-300:hover { box-shadow: color-mix(in srgb, var(--yellow_300) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-yellow-100:hover, .fz-btn-outline-yellow-100:hover { box-shadow: color-mix(in srgb, var(--yellow_100) 50%, transparent) 0px 0px 1px 8px;}
+
+.fz-btn-blue-700:hover, .fz-btn-outline-blue-700:hover { box-shadow: color-mix(in srgb, var(--blue_700) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-blue-500:hover, .fz-btn-outline-blue-500:hover { box-shadow: color-mix(in srgb, var(--blue_500) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-blue-300:hover, .fz-btn-outline-blue-300:hover { box-shadow: color-mix(in srgb, var(--blue_300) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-blue-100:hover, .fz-btn-outline-blue-100:hover { box-shadow: color-mix(in srgb, var(--blue_100) 50%, transparent) 0px 0px 1px 8px;}
+
+.fz-btn-purple-700:hover, .fz-btn-outline-purple-700:hover { box-shadow: color-mix(in srgb, var(--purple_700) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-purple-500:hover, .fz-btn-outline-purple-500:hover { box-shadow: color-mix(in srgb, var(--purple_500) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-purple-300:hover, .fz-btn-outline-purple-300:hover { box-shadow: color-mix(in srgb, var(--purple_300) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-purple-100:hover, .fz-btn-outline-purple-100:hover { box-shadow: color-mix(in srgb, var(--purple_100) 50%, transparent) 0px 0px 1px 8px;}
+
+.fz-btn-cyan-700:hover, .fz-btn-outline-cyan-700:hover { box-shadow: color-mix(in srgb, var(--cyan_700) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-cyan-500:hover, .fz-btn-outline-cyan-500:hover { box-shadow: color-mix(in srgb, var(--cyan_500) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-cyan-300:hover, .fz-btn-outline-cyan-300:hover { box-shadow: color-mix(in srgb, var(--cyan_300) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-cyan-100:hover, .fz-btn-outline-cyan-100:hover { box-shadow: color-mix(in srgb, var(--cyan_100) 50%, transparent) 0px 0px 1px 8px;}
+
+.fz-btn-brown-700:hover, .fz-btn-outline-brown-700:hover { box-shadow: color-mix(in srgb, var(--brown_700) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-brown-500:hover, .fz-btn-outline-brown-500:hover { box-shadow: color-mix(in srgb, var(--brown_500) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-brown-300:hover, .fz-btn-outline-brown-300:hover { box-shadow: color-mix(in srgb, var(--brown_300) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-brown-100:hover, .fz-btn-outline-brown-100:hover { box-shadow: color-mix(in srgb, var(--brown_100) 50%, transparent) 0px 0px 1px 8px;}
+
+.fz-btn-dark-700:hover, .fz-btn-outline-dark-700:hover { box-shadow: color-mix(in srgb, var(--dark_700) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-dark-500:hover, .fz-btn-outline-dark-500:hover { box-shadow: color-mix(in srgb, var(--dark_500) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-dark-300:hover, .fz-btn-outline-dark-300:hover { box-shadow: color-mix(in srgb, var(--dark_300) 50%, transparent) 0px 0px 1px 8px;}
+
+.fz-btn-gray-700:hover, .fz-btn-outline-gray-700:hover { box-shadow: color-mix(in srgb, var(--gray_700) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-gray-500:hover, .fz-btn-outline-gray-500:hover { box-shadow: color-mix(in srgb, var(--gray_500) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-gray-300:hover, .fz-btn-outline-gray-300:hover { box-shadow: color-mix(in srgb, var(--gray_300) 50%, transparent) 0px 0px 1px 8px;}
+
+.fz-btn-light:hover, .fz-btn-outline-light:hover { box-shadow: color-mix(in srgb, var(--dark_300) 50%, transparent) 0px 0px 1px 8px;}
+.fz-btn-white:hover, .fz-btn-outline-white:hover { box-shadow: color-mix(in srgb, var(--blue_500) 50%, transparent) 0px 0px 1px 8px;}

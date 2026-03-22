@@ -1,0 +1,6 @@
+@import './font.css';
+@import './color.css';
+@import './button.css';
+@import './text.css';
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+@import "tailwindcss";

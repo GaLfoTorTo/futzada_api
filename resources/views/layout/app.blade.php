@@ -12,7 +12,7 @@
    {{-- AOS --}}
    <link rel="stylesheet" href="/plugins/aos/css/aos.min.css">
    {{-- Custom Styles --}}
-<link rel="stylesheet" href="/css/styles.css">
+   <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
    @include('layout.header')

@@ -1,0 +1,115 @@
+/* COLORS */
+:root{
+    /* GREEN */
+    --green-700:#015924;
+    --green-500:#03983E;
+    --green-300:#04D361;
+    --green-100:#93D6B1;
+    /* BEGE */
+    --bege-700:#946C4B;
+    --bege-500:#D1A57A;
+    --bege-300:#F6D1A8;
+    --bege-100:#F8E3CB;
+    /* ORANGE */
+    --orange-700:#9B2908;
+    --orange-500:#EB3D0B;
+    --orange-300:#EF5F08;
+    --orange-100:#E7AC88;
+    /* RED */
+    --red-700:#660404;
+    --red-500:#E20505;
+    --red-300:#F44336;
+    --red-100:#F3AAA4;
+    /* YELLOW */
+    --yellow-700:#BF9500;
+    --yellow-500:#FFC700;
+    --yellow-300:#FFF500;
+    --yellow-100:#FFE69C;
+    /* BLUE */
+    --blue-700:#0C0626;
+    --blue-500:#140750;
+    --blue-300:#1F7BF2;
+    --blue-100:#A1C2EC;
+    /* PURPLE */
+    --purple-700:#21054E;
+    --purple-500:#450CA0;
+    --purple-300:#6610F2;
+    --purple-100:#AB85E8;
+    /* CYAN */
+    --cyan-700:#055160;
+    --cyan-500:#0DCAF0;
+    --cyan-300:#6EDFF6;
+    --cyan-100:#BEEFF9;
+    /* BROWN */
+    --brown-700:#472302;
+    --brown-500:#9C4D03;
+    --brown-300:#DF8C3E;
+    --brown-100:#F8D9BD;
+    /* BASE */
+    --dark-700:#181818;
+    --dark-500:#272727;
+    --dark-300:#454545;
+    --gray-700:#969696;
+    --gray-500:#AAAAAA;
+    --gray-300:#CCCCCC;
+    --light-300:#E8EDFA;
+    --light-100:#FFFFFF;
+}
+
+/* BACKGROUND COLORS */
+.bg-green-700 { background-color: var(--green-700) !important; }
+.bg-green-500 { background-color: var(--green-500) !important; }
+.bg-green-300 { background-color: var(--green-300) !important; }
+.bg-green-100 { background-color: var(--green-100) !important; }
+.bg-futebol { background-color: var(--green-300) !important; }
+
+.bg-bege-700 { background-color: var(--bege-700) !important; }
+.bg-bege-500 { background-color: var(--bege-500) !important; }
+.bg-bege-300 { background-color: var(--bege-300) !important; }
+.bg-bege-100 { background-color: var(--bege-100) !important; }
+.bg-volleyball { background-color: var(--bege-300) !important; }
+
+.bg-orange-700 { background-color: var(--orange-700) !important; }
+.bg-orange-500 { background-color: var(--orange-500) !important; }
+.bg-orange-300 { background-color: var(--orange-300) !important; }
+.bg-orange-100 { background-color: var(--orange-100) !important; }
+
+.bg-red-700 { background-color: var(--red-700) !important; }
+.bg-red-500 { background-color: var(--red-500) !important; }
+.bg-red-300 { background-color: var(--red-300) !important; }
+.bg-red-100 { background-color: var(--red-100) !important; }
+.bg-basketball { background-color: var(--red-500) !important; }
+
+.bg-yellow-700 { background-color: var(--yellow-700) !important; }
+.bg-yellow-500 { background-color: var(--yellow-500) !important; }
+.bg-yellow-300 { background-color: var(--yellow-300) !important; }
+.bg-yellow-100 { background-color: var(--yellow-100) !important; }
+
+.bg-blue-700 { background-color: var(--blue-700) !important; }
+.bg-blue-500 { background-color: var(--blue-500) !important; }
+.bg-blue-300 { background-color: var(--blue-300) !important; }
+.bg-blue-100 { background-color: var(--blue-100) !important; }
+
+.bg-purple-700 { background-color: var(--purple-700) !important; }
+.bg-purple-500 { background-color: var(--purple-500) !important; }
+.bg-purple-300 { background-color: var(--purple-300) !important; }
+.bg-purple-100 { background-color: var(--purple-100) !important; }
+
+.bg-cyan-700 { background-color: var(--cyan-700) !important; }
+.bg-cyan-500 { background-color: var(--cyan-500) !important; }
+.bg-cyan-300 { background-color: var(--cyan-300) !important; }
+.bg-cyan-100 { background-color: var(--cyan-100) !important; }
+
+.bg-brown-700 { background-color: var(--brown-700) !important; }
+.bg-brown-500 { background-color: var(--brown-500) !important; }
+.bg-brown-300 { background-color: var(--brown-300) !important; }
+.bg-brown-100 { background-color: var(--brown-100) !important; }
+
+.bg-dark-700 { background-color: var(--dark-700) !important; }
+.bg-dark-500 { background-color: var(--dark-500) !important; }
+.bg-dark-300 { background-color: var(--dark-300) !important; }
+.bg-gray-700 { background-color: var(--gray-700) !important; }
+.bg-gray-500 { background-color: var(--gray-500) !important; }
+.bg-gray-300 { background-color: var(--gray-300) !important; }
+.bg-light-300 { background-color: var(--light_300) !important; }
+.bg-light-100 { background-color: var(--light_100) !important; }
