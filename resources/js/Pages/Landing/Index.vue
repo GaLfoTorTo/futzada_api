@@ -4,7 +4,7 @@ import { Avatar, Button, Card, Toolbar } from 'primevue';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
-import { MasonryWall } from '@yeger/vue-masonry-wall'
+import CardFeatures from '@/Components/CardFeatures.vue';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -22,14 +22,14 @@ const items = ref([
       icon: 'fas fa-cogs',
     },
     {
-      label: 'Network',
-      section: 'network',
-      icon: 'fas fa-globe',
-    },
-    {
       label: 'Modality',
       section: 'modality',
       icon: 'fas fa-futbol',
+    },
+    {
+      label: 'Network',
+      section: 'network',
+      icon: 'fas fa-globe',
     },
     {
       label: 'Download',
@@ -75,48 +75,13 @@ let ctx;
 
 /* ESTADOS - FEATURE */
 //OPÇÕES CARD FEATURES
+
 const features = ref([
-  {
-    title: 'Feature 1',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    class: 'w-[15rem] h-[30rem]',
-    icon: 'fas fa-cogs',
-  },
-  [
-    {
-      title: 'Feature 2',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      class: 'w-[15rem] h-[14rem]',
-      icon: 'fas fa-cogs',
-    },
-    {
-      title: 'Feature 3',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      class: 'w-[15rem] h-[14rem]',
-      icon: 'fas fa-cogs',
-    },
-  ],
-  {
-    title: 'Feature 4',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    class: 'w-[15rem] h-[30rem]',
-    icon: 'fas fa-cogs',
-  },
-  [
-    {
-      title: 'Feature 5',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      class: 'w-[23rem] h-[15rem]',
-      icon: 'fas fa-cogs',
-    },
-    {
-      title: 'Feature 6',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      class: 'w-[23rem] h-[15rem]',
-      icon: 'fas fa-cogs',
-    },
-  ]
-]);
+  'manager',
+  ['chat','notify',],
+  'maps',
+  ['custom','achievement',]
+])
 
 /* ESTADOS - FOOTER */
 //BOTÕES FOOTER
@@ -219,8 +184,8 @@ onUnmounted(() => {
   //PARA CARROUSEL
   stopCarousel();
   //PARA SCROLLSMOOTHER
-  ctx.revert();
-  smoother.kill();
+  //ctx.revert();
+  //smoother.kill();
 });
 
 </script>
@@ -281,15 +246,9 @@ onUnmounted(() => {
             Seu navegador não suporta vídeos HTML5.
           </video>
           <!-- Overlay com gradiente -->
-          <div class="overlays-container">
-            <div 
-              :class="['overlay', video.overlay, { 'fade-out': videoTransition }]"
-            ></div>
-            
-            <div 
-              v-if="videoNext"
-              :class="['overlay', videoNext.overlay, 'fade-in']"
-            ></div>
+          <div>
+            <div :class="['overlay', video.overlay, { 'fade-out': videoTransition }]"></div>
+            <div v-if="videoNext" :class="['overlay', videoNext.overlay, 'fade-in']"></div>
           </div>
         </div>
         <div class="overview-content flex flex-col justify-center items-center gap-8">
@@ -319,49 +278,27 @@ onUnmounted(() => {
           <h2 class="text-4xl text-center text-[var(--blue-500)] max-w-[35rem]">Uma experiência unica no meio tecno esportivo!</h2>
           <h3 class="text-xl text-center text-[var(--blue-500)] max-w-[40rem]">Toda facilidade que a tecnologia proporciona agora na palma da suas mãos em prol da sua diversão e entretenimento.</h3>
         </div>
-        <div class="flex flex-wrap justify-center items-center gap-5 w-[70%] mt-[5rem]">
+        <div class="flex flex-wrap justify-center items-center gap-8 w-[70%] mt-[5rem]">
           <div 
             v-for="(feat, i) in features" 
           >
             <div v-if="i == 0 || i == 2">
-              <Card
-                :key="i"
-                :class="feat.class"    
-              >
-                <template #title>{{ feat.title }}</template>
-                <template #content>
-                  <small>{{ feat.description }}</small>
-                </template>
-              </Card>
+              <CardFeatures 
+                :feature="feat"
+              />
             </div>
-            <div v-if="i == 1" class="flex flex-col gap-5">
-              <div
-                v-for="(item, ix) in feat"
-              >
-                <Card
-                  :key="ix"
-                  :class="item.class"        
-                >
-                  <template #title>{{ item.title }}</template>
-                  <template #content>
-                    <small>{{ item.description }}</small>
-                  </template>
-                </Card>
+            <div v-if="i == 1" class="flex flex-col gap-8">
+              <div v-for="(item, ix) in feat">
+                <CardFeatures 
+                  :feature="item"
+                />
               </div>
             </div>
-            <div v-if="i == 3" class="flex flex-col md:flex-row gap-5">
-              <div
-                v-for="(item, i) in feat"
-              >
-                <Card
-                  :key="ix"
-                  :class="item.class"        
-                >
-                  <template #title>{{ item.title }}</template>
-                  <template #content>
-                    <small>{{ item.description }}</small>
-                  </template>
-                </Card>
+            <div v-if="i == 3" class="flex flex-col md:flex-row gap-8">
+              <div v-for="(item, i) in feat">
+                <CardFeatures 
+                  :feature="item"
+                />
               </div>
             </div>
           </div>
@@ -559,12 +496,6 @@ section {
   to {
     opacity: 1;
   }
-}
-
-/* SEÇÃO FEATURES */
-
-.masonry-grid {
-  grid-template-rows: masonry;
 }
 
 /* FOOTER */
