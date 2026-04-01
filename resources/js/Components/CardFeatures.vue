@@ -8,14 +8,14 @@ const props = defineProps({
 const features = [
    {
       type: 'manager',
-      icon: 'fas fa-cogs',
+      icon: 'fas fa-clipboard',
       title: 'Gerenciamento',
       subtitle: 'Mantenha seu evento organizado.',
       description: 'Futzada possibilita gestão completa do seu evento esportivo entre amigos',
       footer: 'Controle de participantes, partidas e muito mais.',
       class: ['w-[15rem]', 'h-[30rem]', 'feature-manager'],
       style: {
-         backgroundImage: "url('/img/futebol/football.jpg')",
+         backgroundImage: "url('/img/feature/card_manager.jpg')",
          backgroundSize: 'cover',
          backgroundPosition: 'center',
          backgroundRepeat: 'no-repeat',
@@ -23,24 +23,24 @@ const features = [
    },
    {
       type: 'chat',
+      icon: 'fas fa-paper-plane',
       title: 'Comunicação',
       subtitle: 'Comunicação centralizada no app.',
       description: 'Chats individuais e em grupos para comunicação unificada com seus amigos.',
       class: ['w-[15rem]', 'h-[14rem]', 'feature-chat'],
-      icon: 'fas fa-paper-plane',
       style: {
-         backgroundImage: "url('/img/futebol/football.jpg')",
+         backgroundImage: "url('/img/feature/card_chat.jpg')",
          backgroundSize: 'cover',
          backgroundPosition: 'center',
       },
    },
    {
       type: 'notify',
+      icon: 'fas fa-bell',
       title: 'Notificações',
       subtitle: 'Mantenha-se alerta diante de tudo.',
       description: 'Notificações em tempo real sobre partidas e atualizações sobre sua vida de atleta.',
       class: ['w-[15rem]', 'h-[14rem]', 'feature-card'],
-      icon: 'fas fa-bell',
       style: {
          backgroundImage: "url('/img/futebol/football.jpg')",
          backgroundSize: 'cover',
@@ -49,12 +49,12 @@ const features = [
    },
    {
       type: 'maps',
+      icon: 'fas fa-compass',
       title: 'Interação com Mapas',
       subtitle: 'Explore e encontre partidas no seu entorno.',
       description: 'Futzada utiliza de bases de dados publicas para mapear as areas e eventos esportivos na sua região.',
       footer: '+ 15.000 locais para jogar',
       class: ['w-[15rem]', 'h-[30rem]', 'feature-card'],
-      icon: 'fas fa-compass',
       style: {
          backgroundImage: "url('/img/futebol/football.jpg')",
          backgroundSize: 'cover',
@@ -63,12 +63,12 @@ const features = [
    },
    {
       type: 'custom',
+      icon: 'fas fa-user',
       title: 'Personalização',
       subtitle: 'Seu perfil, suas caracteristicas.',
       description: 'Caracteristicas individuais de atlea como posições e arquetipos para tornar sua experiência única.',
       footer: 'Personalize seu perfil de atleta da forma que desejar',
       class: ['w-[23rem]', 'h-[15rem]', 'feature-card'],
-      icon: 'fas fa-user',
       style: {
          backgroundImage: "url('/img/futebol/football.jpg')",
          backgroundSize: 'cover',
@@ -77,12 +77,12 @@ const features = [
    },
    {
       type: 'achievement',
+      icon: 'fas fa-medal',
       title: 'Conquistas',
       subtitle: 'Bata todas as metas e alcance um novo patamar.',
       description: 'Sistema de gamificação com desafios semanais, mensais e muito mais.',
-      footer: 'Desbloquei conquistas ao cumprimento tarefas esportivas e subir de nível',
+      footer: 'Cumprimento tarefas esportivas e subir de nível',
       class: ['w-[23rem]', 'h-[15rem]', 'feature-card'],
-      icon: 'fas fa-medal',
       style: {
          backgroundImage: "url('/img/futebol/football.jpg')",
          backgroundSize: 'cover',
@@ -116,7 +116,7 @@ const cardFeature = features.find(f => f.type === props.feature);
             <small class="feature-footer text-center">{{ cardFeature.footer }}</small>
          </div>
          <!-- OVERLAY -->
-         <div :class="['rounded-lg feature-overlay', `feature-${cardFeature.type}`]"></div>
+         <div class="rounded-lg feature-overlay feature-gradiente"></div>
       </template>
    </Card>
 </template>
@@ -221,59 +221,11 @@ const cardFeature = features.find(f => f.type === props.feature);
    filter: blur(30px);
 }
 
-.feature-manager::before {
+/* .feature-gradiente::before {
    background: radial-gradient(
       circle at center,
       transparent 0%,
       var(--green-300) 50%
    );
-}
-
-.feature-maps::before {
-   background: radial-gradient(
-      circle at center,
-      transparent 0%,
-      var(--blue-300) 50%
-   );
-}
-
-.feature-chat::before {
-   background: radial-gradient(
-      circle at center,
-      transparent 0%,
-      var(--orange-300) 50%
-   );
-}
-
-.feature-chat::before {
-   background: radial-gradient(
-      circle at center,
-      transparent 0%,
-      var(--orange-300) 50%
-   );
-}
-
-.feature-notify::before {
-   background: radial-gradient(
-      circle at center,
-      transparent 0%,
-      var(--cyan-500) 50%
-   );
-}
-
-.feature-custom::before {
-   background: radial-gradient(
-      circle at center,
-      transparent 0%,
-      var(--gray-300) 50%
-   );
-}
-
-.feature-achievement::before {
-   background: radial-gradient(
-      circle at center,
-      transparent 0%,
-      var(--yellow-500) 50%
-   );
-}
+} */
 </style>

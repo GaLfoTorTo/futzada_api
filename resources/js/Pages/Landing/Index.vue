@@ -176,7 +176,7 @@ onMounted(() => {
   startCarousel();
   //INICIAR SCROLLSMOOTHER
   setTimeout(() => {
-    //startSmoothScroll();
+    startSmoothScroll();
   }, 100);
 });
 
@@ -231,7 +231,7 @@ onUnmounted(() => {
   </Toolbar>
   <main id="smooth-wrapper" ref="main">
     <div id="smooth-content">
-      <section id="overview" class="flex flex-col justify-center items-center" style="height: 55rem;" data-speed="0.5">
+      <section id="overview" class="flex flex-col justify-center items-center" style="height: 60rem;" data-speed="0.5">
         <div class="video-container">
           <video 
             :key="video.id"
@@ -273,7 +273,7 @@ onUnmounted(() => {
         </div>
       </section>
       
-      <section id="features" class="flex flex-col justify-center items-center gap-5" style="height: 55rem;" data-speed="0.5">
+      <section id="features" class="flex flex-col justify-center items-center gap-5" style="height: 60rem;" data-speed="0.5">
         <div class="flex flex-col justify-center items-center gap-5">
           <h2 class="text-4xl text-center text-[var(--blue-500)] max-w-[35rem]">Uma experiência unica no meio tecno esportivo!</h2>
           <h3 class="text-xl text-center text-[var(--blue-500)] max-w-[40rem]">Toda facilidade que a tecnologia proporciona agora na palma da suas mãos em prol da sua diversão e entretenimento.</h3>
@@ -305,23 +305,23 @@ onUnmounted(() => {
         </div>
       </section>
       
-      <section id="network" class="flex flex-col justify-center items-center" data-speed="0.5">
+      <section id="network" class="flex flex-col justify-center items-center" style="height: 60rem;" data-speed="0.5">
         <div >Network Section</div>
       </section>
       
-      <section id="modality" class="flex flex-col justify-center items-center" data-speed="0.5">
+      <section id="modality" class="flex flex-col justify-center items-center" style="height: 60rem;" data-speed="0.5">
         <div >Modality Section</div>
       </section>
       
-      <section id="download" class="flex flex-col justify-center items-center" data-speed="0.5">
+      <section id="download" class="flex flex-col justify-center items-center" style="height: 60rem;" data-speed="0.5">
         <div >Download Section</div>
       </section>
       
-      <section id="contact" class="flex flex-col justify-center items-center" data-speed="0.5">
+      <section id="contact" class="flex flex-col justify-center items-center" style="height: 60rem;" data-speed="0.5">
         <div >Contact Section</div>
       </section>
 
-      <footer id="footer" class="flex flex-col md:flex-row justify-evenly" data-speed="0.5">
+      <footer id="footer" class="flex flex-col md:flex-row justify-evenly" style="height: 60rem;" data-speed="0.5">
         <div class="flex flex-col text-white">
           <strong >Futzada</strong>
           <small class="text-slate-400">&copy; Futzada {{ new Date().getFullYear() }}, Todos os direitos reservados.</small>
