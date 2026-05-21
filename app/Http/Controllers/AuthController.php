@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Google\Client as GoogleClient;
-use App\Http\Resources\UserResource;
+use App\Resources\UserResource;
+use App\Services\UserService;
 use App\Models\User;
 
 class AuthController extends Controller
@@ -17,34 +18,25 @@ class AuthController extends Controller
         try {
             //VERIFICAR SE DADOS RECEBIDOS NÃO ESTÃO VAZIO
             if(!empty($request->all())){
-                //REQUEST CREDENCIAIS 
-                $credentials = $request->only('user', 'password');
-                //INICIALIZAR USUARIO
-                $user = null;
-                //VERIFICAR TIPO DE AUTENTICAÇÃO (EMAIL OU USERNAME)
-                if (filter_var($credentials['user'], FILTER_VALIDATE_EMAIL)) {
-                    //TENTAR AUTENTICAR PELO EMAIL
-                    $credentials = ['email' => $credentials['user'], 'password' => $credentials['password']];
-                    //BUSCAR USUARIO 
-                    $user = User::with('player','manager')->where('email', $credentials['email'])->first();
-                } else {
-                    //TENTAR AUTENTICAR PELO USER NAME
-                    $credentials = ['user_name' => $credentials['user'], 'password' => $credentials['password']];
-                    //BUSCAR USUARIO 
-                    $user = User::with('player','manager')->where('user_name', $credentials['user_name'])->first();
+                $token = null;
+                //CASOS DE TIPOS DE LOGIN
+                switch ($request->type) {
+                    case 'google':
+                        $user = $this->google($request);
+                        break;
+                    default:
+                        $user = $this->platform($request);
+                        break;
                 }
-                //VERIFICAR SE CREDENCIAIS DO USUARIO SÃO VALIDAS
-                if (!$token = JWTAuth::attempt($credentials)) {
-                    return response()->json(['message' => 'E-mail/Usuario ou senha estão incorretos'], 401);
-                }
+                //VERIFICAR SE USUARIO FOI RECEBIDO
+                if (empty($user)) throw new \Throwable('Falha ao autenticar: usuário inválido ou não retornado pelas funções de login');
+                //GERAR TOKEN JWT
+                $token = JWTAuth::fromUser($user);
                 //ADICIONAR TOKEN AOS DADOS DO USUARIO
-                $user['token'] = $token; 
-                //AJUSTAR DADOS DO USUARIO (TRANSFORMAR SNACK_CASE PARA CAMELCASE)
-                $user = new UserResource($user);
-                //RETORNAR DADOS PARA AUTENTICAÇÃO
-                return response()->json(['user' => $user], 200);
+                $user = UserResource::make($user);
+                return response()->json(['user' => $user, 'token' => $token], 200);
             }
-        }catch(\Exception $e) {
+        }catch(\Throwable $e) {
             //CAPTURAR ERRO E ENVIAR PARA O LOG
             Log::channel('auth')->error("[Erro de autenticação][Usuario][Auth]", ['[message]' => $e->getMessage(), '[error]' => $e->getTraceAsString()]);
             //REDIRECIONAR PARA O FORMULÁRIO COM A MENSAGEM DE ERRO
@@ -52,56 +44,64 @@ class AuthController extends Controller
         }
     }
 
-    //FUNÇÃO DE LOGIN COM GOOGLE
-    public function loginGoogle(Request $request){
+    //FUNÇÃO DE LOGIN NA PLATAFORMA
+    public function platform(Request $request){
+        try {
+            //REQUEST CREDENCIAIS 
+            $credentials = $request->only('user', 'password');
+            //INICIALIZAR USUARIO
+            $user = null;
+            //VERIFICAR TIPO DE AUTENTICAÇÃO (EMAIL OU USERNAME)
+            if (filter_var($credentials['user'], FILTER_VALIDATE_EMAIL)) {
+                //TENTAR AUTENTICAR PELO EMAIL
+                $credentials = ['email' => $credentials['user'], 'password' => $credentials['password']]; 
+                $user = User::with('player','manager')->where('email', $credentials['email'])->first();
+            } else {
+                //TENTAR AUTENTICAR PELO USER NAME
+                $credentials = ['user_name' => $credentials['user'], 'password' => $credentials['password']];
+                $user = User::with('player','manager','config','level', 'participants','achievements')->where('user_name', $credentials['user_name'])->first();
+            }
+            //VERIFICAR SE CREDENCIAIS DO USUARIO SÃO VALIDAS
+            if (!JWTAuth::attempt($credentials)) {
+                throw new \Throwable('E-mail/Usuario ou senha estão incorretos');
+            }
+            //RETORNAR USUARIO AUTENTICADO
+            return $user;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+
+    //FUNÇÃO DE LOGIN NO GOOGLE
+    public function google(Request $request){
         //TENTAR EFETUAR LOGIN
         try {
+            $token = $request->id_token ?? null;
+            $httpClient = new \GuzzleHttp\Client([
+                "verify" => false
+            ]);//(TEMP)***
             //VERIFICAR TOKEN DE AUTENTICAÇÃO COM O GOOGLE
-            $client = new GoogleClient(['client_id' => config('services.google.client_id')]);
-            $payload = $client->verifyIdToken($request->id_token);
+            $googleClient = new GoogleClient(['client_id' => config('services.google.client_id')]);
+            $googleClient->setHttpClient($httpClient);//(TEMP)***
+            $payload = $googleClient->verifyIdToken($token);
             if (!$payload) {
                 //REGISTRAR ERRO DE LOGIN
-                Log::channel('auth')->error('Token inválido do Google', [
-                    'token' => substr($request->id_token, 0, 50) . '...',
+                Log::channel('auth')->error("[Erro de Authenticação][Google]", [
+                    "message" => "Token inválido",
+                    'token' => substr($token, 0, 50) . '...',
                     'client_id' => config('services.google.client_id')
                 ]);
-                return response()->json(['message' => 'Não foi possível fazer login, tente novamente.'], 401);
+                throw new \Throwable('Token Invalido');
             }
-            //VERIFICAR SE DADOS RECEBIDOS NÃO ESTÃO VAZIO
-            if(!empty($payload['email'])){
-                //INIICIALIZAR USUARIO
-                $user;
-                //BUSCAR USUARIO 
-                $user = User::with('player','manager')->where('email', $payload['email'])->first();
-                if(empty($user)){
-                    //DEFINIR DADOS BASICOS DO USUARIO
-                    $data = [
-                        'uuid' => (string) Str::uuid(),
-                        'first_name'=> explode(" ", $payload['name'])[0],
-                        'last_name'=> explode(" ", $payload['name'])[1],
-                        'user_name'=> null,
-                        'email'=> $payload['email'],
-                        'password'=> null,
-                        'born_date'=> null,
-                        'phone'=> null,
-                        "photo" => $payload['picture'],
-                        'visibility'=> true,
-                    ];
-                    //REGISTRAR USUARIO
-                    $user = User::create($data);
-                }
-                //ADICIONAR TOKEN AOS DADOS DO USUARIO
-                $user['token'] = JWTAuth::fromUser($user);
-                //AJUSTAR DADOS DO USUARIO (TRANSFORMAR SNACK_CASE PARA CAMELCASE)
-                $user = new UserResource($user);
-                //RETORNAR DADOS PARA AUTENTICAÇÃO
-                return response()->json(['user' => $user], 200);
+            //BUSCAR USUARIO 
+            $user = User::with('player','manager','config','level','participants','achievements')->where('email', $payload['email'])->first();
+            if(empty($user)){
+                $userService = new UserService();
+                $user = $userService->create($payload);
             }
-        }catch(\Exception $e) {
-            //CAPTURAR ERRO E ENVIAR PARA O LOG
-            Log::channel('auth')->error("[Erro de autenticação][Usuario][Auth]", ['[message]' => $e->getMessage(), '[error]' => $e->getTraceAsString()]);
-            //REDIRECIONAR PARA O FORMULÁRIO COM A MENSAGEM DE ERRO
-            return response()->json(['message' => 'Houve um erro ao efetura login. Tente novamente mais tarde!'], 500);
+            return $user;
+        } catch (\Throwable $th) {
+            throw $th;
         }
     }
 
@@ -118,7 +118,7 @@ class AuthController extends Controller
                 //RETORNAR MENSAGEM DE LOGOUT
                 return response()->json(['message' => 'Houve um erro ao efetura logout. Usuario não especificado!'], 500);
             }
-        }catch(\Exception $e) {
+        }catch(\Throwable $e) {
             //CAPTURAR ERRO E ENVIAR PARA O LOG
             Log::channel('auth')->error("[Erro de Logout][Usuario][Auth]", ['[message]' => $e->getMessage(), '[error]' => $e->getTraceAsString()]);
             //REDIRECIONAR PARA O FORMULÁRIO COM A MENSAGEM DE ERRO

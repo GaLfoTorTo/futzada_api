@@ -23,7 +23,7 @@ return new class extends Migration
             $table->date('born_date')->nullable();
             $table->text('modality')->nullable();
             $table->text('photo')->nullable();
-            $table->boolean('visibility')->default(true);
+            $table->boolean('privacy')->default(true);
             $table->timestamps();
             $table->softDeletes();
             

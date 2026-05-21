@@ -37,17 +37,17 @@ class News extends Model implements Auditable
 
     // ─── Relationships ────────────────────────────────────────────────────────
 
-    public function type(): BelongsTo
+    public function type()
     {
         return $this->belongsTo(EventType::class, 'type_id');
     }
 
-    public function event(): BelongsTo
+    public function event()
     {
         return $this->belongsTo(Event::class);
     }
 
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

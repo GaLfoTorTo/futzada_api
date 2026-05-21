@@ -126,16 +126,16 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
-        //LOGS PERSONALIZADOS: CRIAÇÃO, EDIÇÃO REMOÇÃO DE REGISTROS
-        'register' => [
-            'driver' => 'single',
-            'path' => storage_path('logs/register.log'),
-            'level' => env('LOG_LEVEL', 'error'),
-        ],
         //LOGS PERSONALIZADOS: AUTENTICAÇÃO
         'auth' => [
             'driver' => 'single',
             'path' => storage_path('logs/auth.log'),
+            'level' => env('LOG_LEVEL', 'error'),
+        ],
+        //LOGS PERSONALIZADOS: CRIAÇÃO, EDIÇÃO REMOÇÃO DE REGISTROS
+        'register' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/register.log'),
             'level' => env('LOG_LEVEL', 'error'),
         ],
         //LOGS PERSONALIZADOS: UPLOAD DE ARQUIVOS

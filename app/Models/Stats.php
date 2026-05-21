@@ -33,7 +33,7 @@ class Stats extends Model implements Auditable
     // ─── Relationships ────────────────────────────────────────────────────────
 
     
-    public function game(): BelongsTo
+    public function game()
     {
         return $this->belongsTo(Game::class);
     }

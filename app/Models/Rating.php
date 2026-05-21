@@ -51,17 +51,17 @@ class Rating extends Model implements Auditable
 
     // ─── Relationships ────────────────────────────────────────────────────────
 
-    public function player(): BelongsTo
+    public function player()
     {
         return $this->belongsTo(Player::class);
     }
 
-    public function event(): BelongsTo
+    public function event()
     {
         return $this->belongsTo(Event::class);
     }
 
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

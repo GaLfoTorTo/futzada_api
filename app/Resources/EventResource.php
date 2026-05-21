@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Enums\Privacy;
 use App\Resources\AddressResource;
 use App\Resources\GameConfigResource;
 use App\Resources\AvaliationResource;
@@ -27,14 +28,14 @@ class EventResource extends JsonResource
             'modality'      => $this->modality,
             'collaborators' => $this->collaborators,
             'photo'         => $this->photo_url,
-            'privacy'       => $this->privacy,
-            'address'       => AddressResource::make($this->whenLoaded('address')),
-            'gameConfig'    => GameConfigResource::make($this->whenLoaded('gameConfig')),
-            'avaliations'   => AvaliationResource::collection($this->whenLoaded('avaliations')),
-            'participants'  => UserResource::collection($this->whenLoaded('participants')),
-            'rules'         => RuleResource::collection($this->whenLoaded('rules')),
-            'news'          => NewsResource::collection($this->whenLoaded('news')),
-            'games'         => GameResource::collection($this->whenLoaded('games')),
+            'privacy'       => Privacy::fromBool((bool) $this->privacy)->value,
+            'address'       => $this->whenLoaded('address') ? AddressResource::make($this->address) : null,
+            'gameConfig'    => $this->whenLoaded('gameConfig') ? GameConfigResource::make($this->gameConfig) : null,
+            'avaliations'   => $this->whenLoaded('avaliations') ? AvaliationResource::collection($this->avaliations) : [],
+            'participants'  => $this->whenLoaded('participants') ? UserResource::collection($this->participants) : [],
+            'rules'         => $this->whenLoaded('rules') ? RuleResource::collection($this->rules) : [],
+            'news'          => $this->whenLoaded('news') ? NewsResource::collection($this->news) : [],
+            'games'         => $this->whenLoaded('games') ? GameResource::collection($this->games) : [],
             'createdAt'     => $this->created_at?->toIso8601String(),
             'updatedAt'     => $this->updated_at?->toIso8601String(),
             'deletedAt'     => $this->deleted_at?->toIso8601String(),

@@ -17,7 +17,7 @@ class GameEventType extends Model
         "action_id",
     ];
     
-    public function action(): BelongsTo
+    public function action()
     {
         return $this->belongsTo(Action::class);
     }

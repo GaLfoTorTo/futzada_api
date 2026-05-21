@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
-            $table->json('role')->nullable();
+            $table->json('roles')->nullable();
             $table->json('permissions')->nullable();
             $table->enum('status', ['Avaliable','Doubt','Injured','Out'])->default('Avaliable');
             $table->timestamps();

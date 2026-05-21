@@ -5,120 +5,133 @@ namespace App\Services;
 use App\Repositories\RegisterRepository;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
 use App\Models\SubModulo;
 use Image;
 
 class UploadService
 {
-    public $repository;
-    public $modulo;
-    protected string $namespace;
-    public string $field;
+    public $model;
+    public string $uField;
+    public string $dField;
     protected string $folder;
-    protected $request;
+    protected Request $request;
 
-    public function __construct(string $modelClass){   
-        //MONTAR MODEL DINAMICAMENTE
-        $class = 'App\\Models\\' . $modelClass;
-        //VERIFICAR SE A CLASSE EXISTE
-        if (!class_exists($class)) {
-            throw new \Exception("Model {$class} não encontrado.");
+    public function __construct(Model $model){}
+
+    //FUNÇÃO DE BUSCA DE ARQUIVOS SALVOS DO REGISTRO
+    protected function getSavedFiles(): array{
+        //BUSCAR REGISTRO
+        $register = $this->model->find($this->request->id);
+        //VERIFICAR SE REGISTRO EXISTE
+        if (!empty($register) && !empty($register->{$this->uField})) {
+            //COLETAR ARQUIVOS SALVOS
+            return isJson($register->{$this->uField})
+                ? json_decode($register->{$this->uField}, true)
+                : (array) $register->{$this->uField};
         }
-        //INSTANCIAR REPOSITORY COM MODULO RECEBIDO
-        $this->repository = new RegisterRepository($class);
-        //INSTANCIAR METADATA DO MODULO RECEBIDO
-        $this->modulo = $this->getModulo($modelClass);
-        $this->namespace = $class;
-        $this->field = method_exists($this->repository->model, 'getUploadField') ? $this->repository->model->getUploadField() : 'documentos';
-        $this->folder = $this->getFolder();
-        return $this;
+        return [];
     }
 
-    //FUNÇÃO PARA RESGATAR METADADOS DO MODULO ATUAL
-    public function getModulo($namespace){
-        return SubModulo::where('namespace','App\\Models\\'.$namespace)->first();
+    //FUNÇÃO DEVERIFICAÇÃO DE ARQUIVOS SALVOS NO REGISTRO
+    protected function verifySavedFiles(){
+        //BUSCAR ARQUIVOS SALVOS
+        $oldFiles = $this->getSavedFiles();
+        //VERIFICAR SE EXISTEM ARQUIVOS SALVOS
+        return !empty($oldFiles) && count($oldFiles) > 0;
     }
 
-    //FUNÇÃO DE DEFINIÇÃO DA PASTA DE DESTINO
-    protected function getFolder(): string{
-        //MODELS A SEREM IGNORADAS
-        $ignorar = [
-            "App\Models\Empresa",
-            "App\Models\InformacoesLegaisEmpresa",
-            "App\Models\Colaborador",
-        ];
-        //DEFINIR PASTA DE DESTINO PARA PLANO EP
-        if (str_contains($this->namespace, 'PlanoEpEnsaio')) {
-            return '/documentos/plano_ep/' . date('Y/m/d') . '/';
+    //FUNÇÃO DE VERIFICAÇÃO DE ARQUIVOS NA REQUEST
+    protected function verifyNewFiles(){
+        //VERIFICAR SE EXISTEM ARQUIVOS NA REQUISIÇÃO
+        if (isset($this->request[$this->uField])) {
+            $files = $this->request[$this->uField];
+            //VERIFICAR SE REQUISIÇÃO CONTEM MAIS DE 1 ARQUIVO
+            if (is_array($files)) {
+                foreach ($files as $file) {
+                    return $file instanceof \Illuminate\Http\UploadedFile;
+                }
+            }
+            //VERIFICAR SE REQUISIÇÃO CONTEM APENAS 1 ARQUIVO
+            return $files instanceof \Illuminate\Http\UploadedFile;
         }
-        
-        //DEFINIR PASTA DE DESTINO PARA DEMAIS MODULOS
-        if (!in_array($this->namespace, $ignorar)) {
-            return '/documentos/' . $this->modulo->route . '/' . date('Y/m/d') . '/';
-        }
+        return false;
+    }
 
-        return '/documentos/geral/' . date('Y/m/d') . '/';
+    //FUNÇÃO DE VERIFICAÇÃO DE ARQUIVOS DELETADOS NA REQUEST
+    protected function verifyDeletedFiles(){
+        //VERIFICAR SE EXISTEM ARQUIVOS DELETADOS NA REQUISIÇÃO
+        if (isset($this->request[$this->dField])) {
+            $files = $this->request[$this->dField];
+            //VERIFICAR SE REQUISIÇÃO CONTEM MAIS DE 1 ARQUIVO
+            if (is_array($files) && count($files) > 0) {
+                return true;
+            }
+        }
+        return false;
     }
 
     //FUNÇÃO DE INICIALIZAÇÃO 
-    public function initUpload($request){
-        //DEFINIR CAMPO DE DOCUMENTOS
-        $uploadField = $this->field;
-        //VERIFICAR SE EXISTEM ARQUIVOS NA REQUISIÇÃO
-        if(!empty($request[$uploadField]) || !empty($request["{$uploadField}_deleted"])){
-            //VERIFICAR SE HÁ ALGUM NOVO ARQUIVO INSERIDO OU ALGUM À SER REMOVIDO (DOCUMENTOS)
-            if($request->hasFile("{$uploadField}") || isset($request["{$uploadField}_deleted"])){
-                //VERIFICAR SE EXISTEM ARQUIVOS A SEREM EXCLUIDOS
-                if(isset($request["{$uploadField}_deleted"]) && sizeof($request["{$uploadField}_deleted"]) > 0){
-                    //REMOVER ARQUIVOS
-                    return $this->remove($request["{$uploadField}_deleted"]);
-                }
-                //VERIFICAR SE EXISTEM ARQUIVOS A SEREM ADICIONADOS
-                if($request->hasFile("{$uploadField}")){
-                    //ADICIONAR ARQUIVOS
-                    return $this->upload($request);
-                }
-            }
+    public function init(Request $request, string $field=null){
+        //RESGATAR REQUEST E CAMPO DE UPLOAD
+        $this->request = $request;
+        $this->uField = !empty($field) ? $field : $this->uField;
+        $this->dField = "{$this->uField}_deleted";
+        $this->folder = "/user/";
+        //VERIFICAR SE EXISTEM ARQUIVOS A SEREM ADICIONADOS
+        $hasNewFiles = $this->verifyNewFiles();
+        //VERIFICAR SE EXISTEM ARQUIVOS A SEREM DELETADOS
+        $hasDeleteFiles = $this->verifyDeletedFiles();
+        //REMOVER ARQUIVOS
+        if ($hasDeleteFiles) {
+            return $this->remove();
+        }
+        //ADICIONAR ARQUIVOS
+        if($hasNewFiles){
+            return $this->upload($this->request);
+        }
+        //ARQUIVOS SALVOS
+        if($hasSavedFiles){
+            return $this->getSavedFiles();
         }
         return null;
     }
 
     //FUNÇÃO DE UPLOAD DE ARQUIVOS
-    public function upload($request){
-        //RESGATAR DADOS DA REQUEST
-        $this->request = $request;
+    public function upload(){
         //TENTAR FAZER UPLOAD
         try {
-            //RESGATAR REGISTRO
-            $register = isset($this->request->id)
-                ? $this->repository->model->find($this->request->id)
-                : null;
             //VERIFICAR SE REGISTRO CONTEM ARQUIVOS SALVOS
-            $oldFiles = $register ? $this->getOldFiles($register) : [];
+            $oldFiles = $this->getSavedFiles();
             //PREPARA ARQUIVOS
-            $newFiles = $this->prepareFiles($oldFiles);
-            //RETORNAR CAMINHO DOS ARQUIVOS
-            return !empty($newFiles) && is_array($newFiles) && sizeof($newFiles) > 0 ? json_encode($newFiles) : null;
+            $newFiles = $this->prepareFiles();
+            //COMBINAR ARQUIVOS ANTIGOS COM NOVOS
+            $newFiles = array_merge($oldFiles, $newFiles);
+            //FILTRAR CAMINHOS DE ARQUIVOS VÁLIDOS
+            $filteredFiles = array_filter($newFiles, function($file) {
+                return !empty($file) && is_string($file) && trim($file) !== '';
+            });
+            //RETORNAR CAMINHO DOS ARQUIVOS COMO JSON
+            return !empty($filteredFiles)? json_encode(array_values($filteredFiles)) : null;
         } catch (\Exception $e) {
             //CAPTURAR ERRO E ENVIAR PARA O LOG
-            Log::channel('arquivo')->error("[Erro de upload][{$this->modulo->nome}][form_id={$this->request->id}]",['message' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
-            return $register[$this->field] ?? null;
+            Log::channel('arquivo')->error("[Erro de upload][Upload]",['message' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
+            return json_encode(array_values($register[$this->uField])) ?? null;
         }
     }
 
     //FUNÇÃO DE REMOÇÃO DE ARQUIVOS
-    public function remover(array $removedFiles): array {
-        //RESGATAR ARQUIVOS DO REGISTRO
-        $registro = $this->repository->model->find($this->request->id);
-        $currentFiles = $this->getOldFiles($registro);
-
+    public function remove() {
+        //BUSCAR ARQUIVOS SALVOS
+        $savedFiles = $this->getSavedFiles();
         try {
+            $removedFiles = array_unique($this->request[$this->dField]);
             //REMOVER DUPLICAR E PPERCORRER ARQUIVOS 
-            foreach (array_unique($removedFiles) as $file) {
+            foreach ($removedFiles as $file) {
                 //VERIFICAR SE AQUIVOS REALMENTE ESTA NOS ARQUIVOS SALVOS
-                if (in_array($file, $currentFiles)) {
-                    $key = array_search($file, $currentFiles);
-                    unset($currentFiles[$key]);
+                if (in_array($file, $savedFiles)) {
+                    //REMOVER ARQUIVO DO ARRAY
+                    $savedFiles = array_filter($savedFiles, fn ($saved) => !in_array($saved, $removedFiles, true));
                     $filePath = str_replace('/storage', '', $file);
                     //MOVER ARQUIVO PARA PASTA DE DELETADOS
                     if (Storage::disk('public')->exists($filePath)) {
@@ -127,45 +140,35 @@ class UploadService
                     }
                 }
             }
-            //VERIFICAR SE SOBROU ALGUM ARQUIVO 
-            return !empty($currentFiles)
-                ? json_encode(array_values($currentFiles))
-                : null;
+            //FILTRAR CAMINHOS DE ARQUIVOS VÁLIDOS
+            $filteredFiles = array_filter($savedFiles, function($file) {
+                return !empty($file) && is_string($file) && trim($file) !== '';
+            });
+            //RETORNAR CAMINHO DOS ARQUIVOS COMO JSON
+            return !empty($filteredFiles)? json_encode(array_values($filteredFiles)) : null;
         } catch (\Exception $e) {
             //CAPTURAR ERRO E ENVIAR PARA O LOG
-            Log::channel('arquivo')->error("[Erro ao Remover Arquivo][{$this->modulo->nome}][form_id={$this->request->id}]",['message' => $e->getMessage()]);
-            return $currentFiles;
+            Log::channel('arquivo')->error("[Erro ao Remover Arquivo][Upload]",['message' => $e->getMessage()]);
+            return json_encode(array_values($savedFiles)) ?? null;
         }
-    }
-
-    //FUNÇÃO DE VERIFICAÇÃO DE ARQUIVOS NO REGISTRO
-    protected function getOldFiles($register): array{
-        if (!empty($register) && !empty($register->{$this->field})) {
-            return isJson($register->{$this->field})
-                ? json_decode($register->{$this->field}, true)
-                : (array)$register->{$this->field};
-        }
-        return [];
     }
 
     //FUNÇÃO DE PREPARAÇÃO DE ARQUIVOS
-    protected function prepareFiles(array $files): array{
-        $newFiles = $files;
-        //VERIFICAR SE FORAM RECEBIDOS ARQUIVOS NA REQUEST
-        if ($this->request->hasFile($this->field) && !empty($this->request[$this->field])) {
-            //VERIFICAR SE FOI RECEBIDO MAIS DE 1 ARQUIVO
-            $files = is_array($this->request->{$this->field})
-                ? $this->request->{$this->field}
-                : [$this->request->file($this->field)];
-            //RENOMEAR E MOVER ARQUIVO PARA STORAGE
-            foreach ($files as $file) {
-                $fileName = renameData($file->getClientOriginalName());
-                $newFile = $this->moveFile($fileName, $file);
-                //VERIFICAR SE ARQUIVOS FORAM MOVIDOS CORRETAMENTE
-                if ($newFile) {
-                    $newFiles[] = $newFile;
-                }
+    protected function prepareFiles(): array{
+        //DEFINIR ARRAY DE NOVOS ARQUIVOS    
+        $newFiles = [];
+        //VERIFICAR SE FOI RECEBIDO MAIS DE 1 ARQUIVO
+        $files = is_array($this->request->{$this->uField})
+            ? $this->request->{$this->uField}
+            : [$this->request->file($this->uField)];
+        //RENOMEAR E MOVER ARQUIVO PARA STORAGE
+        foreach ($files as $file) {
+            //VERIFICAR SE ARQUIVO NO LOOP É VALIDO
+            if (!$file instanceof \Illuminate\Http\UploadedFile && !$file->isValid()) {
+                continue;
             }
+            $fileName = renameData($file->getClientOriginalName());
+            $newFiles[] = $this->moveFile($fileName, $file);
         }
         //RETORNAR ARRAY DE CAMINHOS DOS ARQUIVOS
         return $newFiles;
@@ -173,14 +176,10 @@ class UploadService
 
     //FUNÇÃO DE MOVIMENTAÇÃO DE ARQUIVOS
     protected function moveFile(string $fileName, $file): ?string{
-        //MONTAR CAMINHO DE UPLOAD PARA A EMPRESA
-        $uuid = auth()->user()->empresa->uuid;
-        $path = 'uploads/empresas/' . $uuid . $this->folder;
         //VERIFICAR SE ARQUIVO FORAM MOVIDOS PARA STORAGE E RETORNAR CAMINHO DO ARQUIVO
-        if ($this->saveStorage($file, $path, $fileName)) {
+        if ($this->saveStorage($file, $this->folder, $fileName)) {
             return '/storage/' . $path . $fileName;
         }
-
         return null;
     }
 

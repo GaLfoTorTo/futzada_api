@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -14,7 +14,7 @@ class GameEventResource extends JsonResource
             'gameId'      => $this->game_id,
             'teamId'      => $this->team_id,
             'userId'      => $this->user_id,
-            'gameEvent'   => $this->whenLoaded('gameEventType'),
+            'gameEvent'   => $this->whenLoaded('gameEventType') ? $this->gameEventType : null,
             'minute'      => $this->minute,
             'title'       => $this->title,
             'description' => $this->description,

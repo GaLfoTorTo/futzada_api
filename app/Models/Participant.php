@@ -20,7 +20,7 @@ class Participant extends Model implements Auditable
     protected $fillable = [
         'user_id',
         'event_id',
-        'role',
+        'roles',
         'permissions',
         'status',
     ];
@@ -28,13 +28,13 @@ class Participant extends Model implements Auditable
     protected $auditInclude = [
         'user_id',
         'event_id',
-        'role',
+        'roles',
         'permissions',
         'status',
     ];
 
     protected $casts = [
-        'role'        => 'array',
+        'roles'       => 'array',
         'permissions' => 'array',
         'created_at'  => 'datetime',
         'updated_at'  => 'datetime',
@@ -43,22 +43,22 @@ class Participant extends Model implements Auditable
 
     // ─── Relationships ────────────────────────────────────────────────────────
 
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function event(): BelongsTo
+    public function event()
     {
         return $this->belongsTo(Event::class);
     }
     
-    public function pontuations(): BelongsTo
+    public function pontuations()
     {
         return $this->hasMany(Pontuation::class);
     }
    
-    public function performance(): BelongsTo
+    public function performance()
     {
         return $this->hasMany(Performance::class);
     }

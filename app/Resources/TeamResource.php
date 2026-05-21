@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Resources\UserResource;
+use App\Resources\PlayerResource;
 
 class TeamResource extends JsonResource
 {
@@ -16,7 +16,7 @@ class TeamResource extends JsonResource
             'uuid'      => $this->uuid,
             'name'      => $this->name,
             'emblem'    => $this->emblem_url,
-            'players'   => UserResource::collection($this->whenLoaded('players')),
+            'players'   => $this->whenLoaded('players') ? PlayerResource::collection($this->players) : [],
             'createdAt' => $this->created_at?->toIso8601String(),
             'updatedAt' => $this->updated_at?->toIso8601String(),
             'deletedAt' => $this->deleted_at?->toIso8601String(),

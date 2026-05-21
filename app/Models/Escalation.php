@@ -39,12 +39,12 @@ class Escalation extends Model implements Auditable
 
     // ─── Relationships ────────────────────────────────────────────────────────
 
-    public function event(): BelongsTo
+    public function event()
     {
         return $this->belongsTo(Event::class);
     }
 
-    public function manager(): BelongsTo
+    public function manager()
     {
         return $this->belongsTo(Manager::class);
     }

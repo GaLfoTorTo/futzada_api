@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('player_id')->constrained('players')->cascadeOnDelete();
             $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->enum('role', ['Player','Manager','Referee'])->default('Player');
+            $table->enum('role', ['Player','Manager','Refereer'])->default('Player');
             $table->decimal('points', 8, 2)->default(0.0);
             $table->decimal('avarage', 8, 2)->default(0.0);
             $table->decimal('valuation', 10, 2)->default(0.0);

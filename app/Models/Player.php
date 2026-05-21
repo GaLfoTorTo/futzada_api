@@ -40,12 +40,12 @@ class Player extends Model implements Auditable
 
     // ─── Relationships ────────────────────────────────────────────────────────
 
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function ratings(): HasMany
+    public function ratings()
     {
         return $this->hasMany(Rating::class);
     }

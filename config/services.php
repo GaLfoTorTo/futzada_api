@@ -34,4 +34,9 @@ return [
         'client_id' => env('GOOGLE_WEB_CLIENT_ID'),
     ],
 
+    'fcm' => [
+        'project_id'      => env('FCM_PROJECT_ID'),
+        'credentials_path'=> env('FCM_CREDENTIALS_PATH', storage_path('app/firebase/futzada-credentials.json')),
+    ],
+
 ];

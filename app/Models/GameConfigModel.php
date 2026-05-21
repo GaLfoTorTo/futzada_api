@@ -45,12 +45,12 @@ class GameConfig extends Model implements Auditable
 
     // ─── Relationships ────────────────────────────────────────────────────────
 
-    public function event(): BelongsTo
+    public function event()
     {
         return $this->belongsTo(Event::class);
     }
 
-    public function referee(): BelongsTo
+    public function referee()
     {
         return $this->belongsTo(User::class, 'referee_id');
     }

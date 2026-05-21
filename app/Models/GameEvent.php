@@ -36,22 +36,22 @@ class GameEvent extends Model implements Auditable
         "minute",
     ];
 
-    public function game(): BelongsTo
+    public function game()
     {
         return $this->belongsTo(Game::class);
     }
     
-    public function gameEventType(): BelongsTo
+    public function gameEventType()
     {
         return $this->belongsTo(GameEventType::class);
     }
 
-    public function team(): BelongsTo
+    public function team()
     {
         return $this->belongsTo(Team::class);
     }
 
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

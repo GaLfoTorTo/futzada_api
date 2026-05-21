@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use OwenIt\Auditing\Contracts\Auditable;
 use App\Models\Address;
 use App\Models\Avaliation;
+use App\Models\Room;
 use App\Models\GameConfig;
 use App\Models\User;
 use App\Models\Rule;
@@ -29,7 +30,7 @@ class Event extends Model implements Auditable
         'modality',
         'collaborators',
         'photo',
-        'visibility',
+        'privacy',
     ];
     protected $auditInclude = [
         'uuid',
@@ -41,7 +42,7 @@ class Event extends Model implements Auditable
         'modality',
         'collaborators',
         'photo',
-        'visibility',
+        'privacy',
     ];
 
     protected $casts = [
@@ -67,38 +68,43 @@ class Event extends Model implements Auditable
 
     // ─── Relationships ────────────────────────────────────────────────────────
 
-    public function address(): HasOne
+    public function address()
     {
         return $this->hasOne(Address::class);
     }
 
-    public function gameConfig(): HasOne
+    public function gameConfig()
     {
         return $this->hasOne(GameConfig::class);
     }
 
-    public function avaliations(): HasMany
+    public function avaliations()
     {
         return $this->hasMany(Avaliation::class);
     }
 
-    public function participants(): HasMany
+    public function participants()
     {
         return $this->hasMany(Participant::class);
     }
 
-    public function rules(): HasMany
+    public function rules()
     {
         return $this->hasMany(Rule::class);
     }
 
-    public function news(): HasMany
+    public function news()
     {
         return $this->hasMany(News::class);
     }
 
-    public function games(): HasMany
+    public function games()
     {
         return $this->hasMany(Game::class);
+    }
+    
+    public function room()
+    {
+        return $this->hasOne(Room::class);
     }
 }

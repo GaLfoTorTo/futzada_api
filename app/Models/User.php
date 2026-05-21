@@ -2,17 +2,23 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use OwenIt\Auditing\Contracts\Auditable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Models\Achievement;
 use App\Models\Player;
 use App\Models\Manager;
+use App\Models\Level;
+use App\Models\Participant;
+use App\Models\UserConfig;
 
 class User extends Authenticatable implements Auditable, JWTSubject
 {
@@ -74,24 +80,34 @@ class User extends Authenticatable implements Auditable, JWTSubject
 
     // ─── Relationships ────────────────────────────────────────────────────────
 
-    public function config(): HasOne
+    public function config()
     {
         return $this->hasOne(UserConfig::class);
     }
 
-    public function player(): HasOne
+    public function player()
     {
         return $this->hasOne(Player::class);
     }
 
-    public function manager(): HasOne
+    public function manager()
     {
         return $this->hasOne(Manager::class);
     }
 
-    public function participants(): HasMany
+    public function level()
+    {
+        return $this->belongsToMany(Level::class, 'user_levels','user_id','level_id')->withPivot('points');
+    }
+
+    public function participants()
     {
         return $this->hasMany(Participant::class);
+    }
+    
+    public function achievements()
+    {
+        return $this->beLongsTo(Achievement::class, 'user_achievements', 'user_id', 'achievement_id');
     }
 
     // ─── Token Methods ────────────────────────────────────────────────────────

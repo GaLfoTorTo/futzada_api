@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -17,7 +17,7 @@ class PlayerResource extends JsonResource
             'type'         => $this->type,
             'mainPosition' => $this->main_position ?? [],
             'positions'    => $this->positions ?? [],
-            'ratings'      => RatingResource::collection($this->whenLoaded('ratings')),
+            'ratings'      => $this->whenLoaded('ratings') ? RatingResource::collection($this->ratings) : [],
             'createdAt'    => $this->created_at?->toIso8601String(),
             'updatedAt'    => $this->updated_at?->toIso8601String(),
             'deletedAt'    => $this->deleted_at?->toIso8601String(),

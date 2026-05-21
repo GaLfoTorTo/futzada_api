@@ -45,17 +45,17 @@ class Result extends Model implements Auditable
 
     // ─── Relationships ────────────────────────────────────────────────────────
 
-    public function game(): BelongsTo
+    public function game()
     {
         return $this->belongsTo(Game::class);
     }
 
-    public function teamA(): BelongsTo
+    public function teamA()
     {
         return $this->belongsTo(Team::class, 'team_a_id');
     }
 
-    public function teamB(): BelongsTo
+    public function teamB()
     {
         return $this->belongsTo(Team::class, 'team_b_id');
     }

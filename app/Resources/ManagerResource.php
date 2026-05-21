@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Resource\EscalationResource;
-use App\Resource\EconomyResource;
+use App\Resources\EscalationResource;
+use App\Resources\EconomyResource;
 
 class ManagerResource extends JsonResource
 {
@@ -20,8 +20,8 @@ class ManagerResource extends JsonResource
             'secondary'   => $this->secondary,
             'emblem'      => $this->emblem_url,
             'uniform'     => $this->uniform_url,
-            'escalations' => EscalationResource::collection($this->whenLoaded('escalations')),
-            'economies'   => EconomyResource::collection($this->whenLoaded('economies')),
+            'escalations' => $this->whenLoaded('escalations') ? EscalationResource::collection($this->escalations) : [],
+            'economies'   => $this->whenLoaded('economies') ? EconomyResource::collection($this->economies) : [],
             'createdAt'   => $this->created_at?->toIso8601String(),
             'updatedAt'   => $this->updated_at?->toIso8601String(),
             'deletedAt'   => $this->deleted_at?->toIso8601String(),

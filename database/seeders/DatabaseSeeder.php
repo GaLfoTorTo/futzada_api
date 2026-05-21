@@ -17,9 +17,10 @@ class DatabaseSeeder extends Seeder
         $this->call(ActionSeed::class);
         $this->call(GameEvenTypeSeed::class);
         $this->call(EventNewsSeed::class);
+        $this->call(LevelSeed::class);
+        $this->call(AchievementSeed::class);
         //DADOS
-        $this->call(UserSeed::class);
         $this->call(EventSeed::class);
-        $this->call(ParticipantSeed::class);
+        $this->call(UserSeed::class);
     }
 }

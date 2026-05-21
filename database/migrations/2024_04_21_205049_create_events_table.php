@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('modality')->default('Football');
             $table->boolean('collaborators')->default(false);
             $table->text('photo')->nullable();
-            $table->boolean('visibility')->default(true);
+            $table->boolean('privacy')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

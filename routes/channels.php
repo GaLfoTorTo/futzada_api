@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Broadcast;
+use App\Models\Event;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,13 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
+//CANAL DO EVENTO
+Broadcast::channel('event.{uuid}', function (): bool 
+{
+    //RESGATAR EVENTO
+    /* $event = Event::with('room')->where('uuid', $uuid)->first();
+    
+    //VERIFICAR SE EVENTO ESTA ONLINE
+    if (!$event && $event->room->status) return false; */
+    return true;
 });

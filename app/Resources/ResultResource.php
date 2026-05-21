@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -13,8 +13,8 @@ class ResultResource extends JsonResource
         return [
             'id'          => $this->id,
             'gameId'      => $this->game_id,
-            'teamA'       => TeamResource::make($this->whenLoaded('teamA')),
-            'teamB'       => TeamResource::make($this->whenLoaded('teamB')),
+            'teamA'       => $this->whenLoaded('teamA') ? TeamResource::make($this->teamA) : null,
+            'teamB'       => $this->whenLoaded('teamB') ? TeamResource::make($this->teamB) : null,
             'teamAScore'  => $this->team_a_score,
             'teamBScore'  => $this->team_b_score,
             'duration'    => $this->duration,

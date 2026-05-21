@@ -49,12 +49,12 @@ class Team extends Model implements Auditable
 
     // ─── Relationships ────────────────────────────────────────────────────────
 
-    public function game(): BelongsTo
+    public function game()
     {
         return $this->belongsTo(Game::class);
     }
 
-    public function players(): BelongsToMany
+    public function players()
     {
         return $this->belongsToMany(User::class, 'team_user')->withPivot('team_id','game_id','user_id','capitan')->withTimestamps();
     }

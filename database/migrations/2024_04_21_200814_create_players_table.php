@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->enum('best_side',['Right','Left'])->default('Right');
+            $table->integer('number')->nullable();
             $table->string('type')->nullable();
             $table->json('main_position')->nullable();
             $table->json('positions')->nullable();

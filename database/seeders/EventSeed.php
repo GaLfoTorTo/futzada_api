@@ -623,11 +623,12 @@ class EventSeed extends Seeder
                 case 'Football':
                     return $faker->randomElement(['Futebol','Fut7','Futsal']);
                 case 'Volleyball':
-                    return $faker->randomElement(['Volei','Volei de praia']);
+                    return $faker->randomElement(['Volei','Volei de praia','Fut Volei']);
                 case 'Basketball':
                     return $faker->randomElement(['Basquete','Streetball']);
             }
         }
+        
         //FUNÇÃO DE GERAÇÃO DE CONFIGURAÇÕES
         function generateConfig($modality){
             $faker = Factory::create();
@@ -639,48 +640,74 @@ class EventSeed extends Seeder
                         "hasPenalty" => $faker->boolean,
                         "hasGoalLimit" => $faker->boolean,
                         "hasRefereer" => $faker->boolean,
-                        "extraTime" => random_int(0, 10),
-                        "goalLimit" => random_int(0, 10),
+                        "extraTime" => $faker->numberBetween(0, 10),
+                        "goalLimit" => $faker->numberBetween(0, 10),
                     ];
                 case 'Voleyball':
                     return [
-                        "sets" => random_int(0, 3),
+                        "sets" => $faker->numberBetween(0, 3),
                         "hasPointsLimit" => $faker->boolean,
-                        "points" => random_int(0, 25),
+                        "points" => $faker->numberBetween(0, 25),
                         "hasTieBreak" => $faker->boolean,
-                        "tieBreakPoints" => random_int(0, 15),
+                        "tieBreakPoints" => $faker->numberBetween(0, 15),
                     ];
                 case 'Basketball':
                     return [
-                        "quarters" => random_int(0, 4),
-                        "hasExtraTime" => random_int(0, 4),
-                        "extraTime" => random_int(0, 4),
+                        "quarters" => $faker->numberBetween(0, 4),
+                        "hasExtraTime" => $faker->numberBetween(0, 4),
+                        "extraTime" => $faker->numberBetween(0, 4),
                         "hasPointsLimit" => $faker->boolean,
-                        "points" => random_int(0, 10),
+                        "points" => $faker->numberBetween(0, 10),
                     ];
             }
+        }
+
+        //FUNÇÃO DE DEFINIÇÃO DE DATA
+        function getDate(){
+            $week = ['Dom','Seg','Ter','Qua','Qui','Sex','Sab'];
+            $faker = Factory::create();
+            $count = $faker->numberBetween(0, 6);
+            $arr = [];
+            for ($i = 0; $i <= $count; $i++) { 
+                $arr[] = $week[$i];
+            } 
+            return json_encode($arr);
+        }
+
+        //FUNÇÃO PARA RESGATAR FOTOS DO LOCAL DO EVENTO
+        function getPlacePhoto(){
+            $faker = Factory::create();
+            if($faker->boolean){
+                $count = $faker->numberBetween(0, 6);
+                $arr = [];
+                for ($i = 0; $i <= $count; $i++) { 
+                    $arr[] = $faker->imageUrl(640,400,'nature',true);
+                } 
+                return json_encode($arr);
+            }
+            return null;
         }
 
         for($i = 1; $i <= 10; $i ++){
             //GERAR MODALIDADE DO EVENTO
             $modality = $faker->randomElement(['Football','Volleyball','Basketball']);
+            //GERAR INDEX DE COORDENADA DO ENDEREÇO
+            $coor = $faker->numberBetween(0, count($coordinates) - 1);
             //GERAR EVENTO
             DB::table('events')->insert([
                 "uuid" => (string) Str::uuid(),
                 'title' => $faker->jobTitle,
-                'bio' => $faker->text(100),
-                'date' => $faker->dateTimeBetween('-50 years', '-18 years')->format('Y-m-d'),
-                'start_time' => $faker->dateTimeBetween("16:00", "23:00")->format("H:i"),
-                'end_time' => $faker->dateTimeBetween("16:00", "23:00")->format("H:i"),
+                'bio' => $faker->text($faker->numberBetween(100, 255)),
+                'date' => getDate(),
+                'start_time' => $faker->dateTimeBetween("15:00", "19:00")->format("H:i"),
+                'end_time' => $faker->dateTimeBetween("19:00", "23:00")->format("H:i"),
                 'modality' => $modality,
                 'collaborators' => $faker->boolean,
                 'photo' => $faker->imageUrl(640,400,'sports',true),
-                'visibility' => $faker->boolean,
+                'privacy' => $faker->boolean,
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
             ]);
-            //GERAR INDEX DE COORDENADA DO ENDEREÇO
-            $coor = random_int(0, count($coordinates) - 1);
             //GERAR ADDRESS DO EVENTO
             DB::table('address')->insert([
                 "event_id" => $i,
@@ -691,10 +718,10 @@ class EventSeed extends Seeder
                 "city" => $faker->city,
                 "state" => $faker->state,
                 "country" => $faker->country,
-                "zipCode" => $faker->postcode,
+                "zip_code" => $faker->postcode,
                 "latitude" => $coordinates[$coor]["latitude"],
                 "longitude" => $coordinates[$coor]["longitude"],
-                "photos" => "",
+                "photos" => getPlacePhoto(),
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
             ]);
@@ -702,8 +729,8 @@ class EventSeed extends Seeder
             DB::table('game_configs')->insert([
                 "event_id" => $i,
                 "category" => generateCategory($modality),
-                "duration" => random_int(5, 45),
-                "playersPerTeam" => random_int(4, 11),
+                "duration" => $faker->numberBetween(5, 45),
+                "players_per_team" => $faker->numberBetween(4, 11),
                 "config" => json_encode(generateConfig($modality)),
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),

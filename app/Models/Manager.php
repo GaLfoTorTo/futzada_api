@@ -43,17 +43,17 @@ class Manager extends Model implements Auditable
 
     // ─── Relationships ────────────────────────────────────────────────────────
 
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function escalations(): HasMany
+    public function escalations()
     {
         return $this->hasMany(Escalation::class);
     }
 
-    public function economies(): HasMany
+    public function economies()
     {
         return $this->hasMany(Economy::class);
     }

@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('user_configs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('user_configs')->onDelete('cascade');
-            $table->string('main_modality');
-            $table->string('modalities');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->string('main_modality')->nullable();
+            $table->string('modalities')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

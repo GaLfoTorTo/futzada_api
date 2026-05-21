@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Resource\ResultResource;
-use App\Resource\TeamResource;
+use App\Resources\ResultResource;
+use App\Resources\TeamResource;
 
 class GameResource extends JsonResource
 {
@@ -20,8 +20,8 @@ class GameResource extends JsonResource
             'startTime'  => $this->start_time,
             'endTime'    => $this->end_time,
             'status'     => $this->status,
-            'result'     => ResultResource::make($this->whenLoaded('result')),
-            'teams'      => TeamResource::collection($this->whenLoaded('teams')),
+            'result'     => $this->whenLoaded('result') ? ResultResource::make($this->result) : null,
+            'teams'      => $this->whenLoaded('teams') ? TeamResource::collection($this->teams) : [],
             'createdAt'  => $this->created_at?->toIso8601String(),
             'updatedAt'  => $this->updated_at?->toIso8601String(),
             'deletedAt'  => $this->deleted_at?->toIso8601String(),

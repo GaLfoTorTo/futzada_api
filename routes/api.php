@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 //CONTROLLERS
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\GameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,12 +23,26 @@ use App\Http\Controllers\UserController;
 Route::post('/user/create', [UserController::class, 'create'])->name('create');
 //ROTA DE LOGIN
 Route::post('/login', [AuthController::class, 'login'])->name('login');
-//ROTA DE LOGIN GOOGLE
-Route::post('/login/google', [AuthController::class, 'loginGoogle'])->name('loginGoogle');
 
-
-//ROTAS INTERNAS (TOKEN JWT)
+//ROTAS AUTENTICADAS (TOKEN JWT)
 Route::middleware('auth:api')->group(function () {
     Route::get('/home', [HomeController::class, 'home']);
     Route::post('/logout', [AuthController::class, 'logout']);
+
+    // EVENTO
+    Route::prefix('events')->group(function () {
+        // SALA (STREAM)
+        Route::prefix('/room')->group(function () {
+            Route::post('stream',[RoomController::class, 'stream']);
+            Route::post('join',  [RoomController::class, 'join']);
+            Route::post('exit',  [RoomController::class, 'exit']);
+        });
+    });
+
+    // PARTIDAS
+    Route::prefix('games/{game}')->group(function () {
+        Route::post('start', [GameController::class, 'start']);
+        Route::post('pause', [GameController::class, 'pause']);
+        Route::post('finish',[GameController::class, 'finish']);
+    });
 });

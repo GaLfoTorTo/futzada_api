@@ -9,6 +9,7 @@ use OwenIt\Auditing\Contracts\Auditable;
 use App\Models\User;
 use App\Models\Event;
 use App\Models\Team;
+use App\Models\Stats;
 use App\Models\Result;
 
 class Game extends Model implements Auditable
@@ -49,23 +50,28 @@ class Game extends Model implements Auditable
 
     // ─── Relationships ────────────────────────────────────────────────────────
 
-    public function event(): BelongsTo
+    public function event()
     {
         return $this->belongsTo(Event::class);
     }
 
-    public function referee(): BelongsTo
+    public function referee()
     {
         return $this->belongsTo(User::class, 'referee_id');
     }
 
-    public function result(): HasOne
+    public function result()
     {
         return $this->hasOne(Result::class);
     }
 
-    public function teams(): HasMany
+    public function teams()
     {
         return $this->hasMany(Team::class);
+    }
+    
+    public function stats()
+    {
+        return $this->hasOne(Stats::class);
     }
 }
